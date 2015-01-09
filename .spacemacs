@@ -88,6 +88,18 @@ This function is called at the very end of Spacemacs initialization."
   (add-hook 'emacs-lisp-mode-hook 'evil-lisp-state)
   (add-hook 'lisp-mode-hook 'evil-lisp-state)
   (add-hook 'scheme-mode-hook 'evil-lisp-state)
+
+  (require 'helm)
+  (define-key helm-map (kbd "C-t") 'helm-next-line)
+  (define-key helm-map (kbd "C-n") 'helm-previous-line)
+
+                                        ; C++
+                                        ; TODO: move inside a layer
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  (setq c-default-style "stroustrup"
+        c-basic-offset 4
+        indent-tabs-mode nil)
+  (c-set-offset 'innamespace 0)
 )
 
 ;; Custom variables
