@@ -44,7 +44,7 @@
 
                                         ; Keybindings
 (global-set-key (kbd "C-c w") 'eww)
-(global-set-key (kbd "C-c e") 'erc-tls)
+(global-set-key (kbd "C-c i") 'erc-tls)
 (global-set-key (kbd "C-c s") 'eshell)
 (global-set-key (kbd "C-c g") 'magit-status)
 
