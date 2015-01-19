@@ -16,9 +16,6 @@
 (display-time-mode 1)
 (global-linum-mode -1)
 
-(require 'color-theme)
-(load-theme 'zenburn t)
-
 (require 'golden-ratio)
 (golden-ratio-mode)
 
@@ -165,37 +162,6 @@
                                         ; Irc
 (require 'erc)
 
-                                        ; Global
-(defun gtags-root-dir ()
-  "Returns GTAGS root directory or nil if doesn't exist."
-  (with-temp-buffer
-    (if (zerop (call-process "global" nil t nil "-pr"))
-        (buffer-substring (point-min) (1- (point-max)))
-      nil)))
-
-(defun gtags-update-single(filename)
-  "Update Gtags database for changes in a single file"
-  (interactive)
-  (start-process-shell-command
-   "update-gtags" "update-gtags"
-   (concat "cd " (gtags-root-dir) " ; gtags --single-update " filename )))
-
-(defun gtags-update-current-file()
-  (interactive)
-  (defvar filename)
-  (setq filename (replace-regexp-in-string (gtags-root-dir)
-                                           "." (buffer-file-name (current-buffer))))
-  (gtags-update-single filename)
-  (message "Gtags updated for %s" filename))
-
-(defun gtags-update-hook()
-  "Update GTAGS file incrementally upon saving a file"
-  (when ggtags-mode
-    (when (gtags-root-dir)
-      (gtags-update-current-file))))
-
-(add-hook 'after-save-hook 'gtags-update-hook)
-
                                         ; Projectile
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
@@ -224,15 +190,12 @@
 
                                         ; autocomplete
 (require 'auto-complete-config)
-;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-;;(ac-config-default)
 (setq-default ac-sources '(ac-source-semantic-raw))
 
 (ac-set-trigger-key "<tab>")
 
 
                                         ; C++
-(require 'qt-mode)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (defun qt-assistant-search (&optional word)
@@ -249,13 +212,12 @@
       indent-tabs-mode nil)
 
 ;;(require 'cedit)
-(require 'ggtags)
-(setq ggtags-mode-line-project-name nil)
+;;(require 'ggtags)
+;;(setq ggtags-mode-line-project-name nil)
 
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode)
-              (ggtags-mode 1)
               (auto-complete-mode 1)
               (c-set-offset 'innamespace 0)
               (local-set-key (kbd "<C-h q") 'qt-assistant-search)
