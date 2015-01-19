@@ -1,6 +1,5 @@
 ;; Emacs configuration file
 					; Packages
-(setq load-path (cons "~/.emacs.d/lisp" load-path))
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives
@@ -19,12 +18,10 @@
 (require 'golden-ratio)
 (golden-ratio-mode)
 
-                                        ; Frames defaults
+                                        ; Paths
+(setq load-path (cons "~/.emacs.d/lisp" load-path))
+(add-to-list 'Info-directory-list "~/.emacs.d/info")
 
-(set-default-font "Source Code Pro-9")
-(add-to-list 'default-frame-alist '(width  . 100))
-(add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-9"))
 
                                         ; Keybindings
 (global-set-key (kbd "C-c w") 'eww)
@@ -211,10 +208,6 @@
       c-basic-offset 4
       indent-tabs-mode nil)
 
-;;(require 'cedit)
-;;(require 'ggtags)
-;;(setq ggtags-mode-line-project-name nil)
-
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode)
@@ -251,8 +244,8 @@
                                         ; Mode line cleaner
 (defvar mode-line-cleaner-alist
   `((auto-complete-mode . " α")
-    (yas/minor-mode . " υ")
-    (yas-minor-mode . " υ")
+    (yas/minor-mode . " y")
+    (yas-minor-mode . " y")
     (paredit-mode . " π")
     (eldoc-mode . "")
     (abbrev-mode . "")
@@ -263,10 +256,10 @@
     (helm-gtags-mode . " gh")
     (autopair-mode . "")
     ;; Major modes
-    (lisp-interaction-mode . "λ")
+    (lisp-interaction-mode . "l")
     (hi-lock-mode . "")
     (python-mode . "Py")
-    (emacs-lisp-mode . "eλ")
+    (emacs-lisp-mode . "el")
     (nxhtml-mode . "nx"))
   "Alist for `clean-mode-line'.
 
@@ -296,9 +289,7 @@ want to use in the modeline *in lieu of* the original.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("9dae95cdbed1505d45322ef8b5aa90ccb6cb59e0ff26fef0b8f411dfc416c552" default))))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
