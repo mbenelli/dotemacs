@@ -228,6 +228,7 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode)
+              (setq-default ac-sources '(ac-source-semantic-raw))
               (auto-complete-mode 1)
               (c-set-offset 'innamespace 0)
               (local-set-key (kbd "<C-h q") 'qt-assistant-search)
