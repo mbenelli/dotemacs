@@ -1,9 +1,28 @@
 ;; Emacs configuration file
 					; Packages
 (require 'package)
-(package-initialize)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-enable-at-startup nil)
+(defvar needed-packages
+  '(ace-jump-mode
+    auto-complete
+    autopair
+    helm
+    helm-gtags
+    golden-ratio
+    magit
+    paredit
+    slime
+    yasnippet
+    projectile))
+
+(defun ensure-packages ()
+  (dolist (p needed-packages)
+    (unless (pkg-info-package-version p)
+      (install-package p))))
+
+(package-initialize)
 
 
                                         ; Widgets and themes
