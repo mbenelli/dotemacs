@@ -204,12 +204,10 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
 
-                                        ; autocomplete
-(require 'auto-complete-config)
-(setq-default ac-sources '(ac-source-semantic-raw))
-
-(ac-set-trigger-key "<tab>")
-
+                                        ; Elisp
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (auto-complete-mode 1)))
 
                                         ; C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
