@@ -24,7 +24,6 @@
 
 (package-initialize)
 
-
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 (tool-bar-mode 0)
@@ -40,7 +39,6 @@
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 (add-to-list 'Info-directory-list "~/.emacs.d/info")
-
 
                                         ; Keybindings
 (global-set-key (kbd "C-c w") 'eww)
