@@ -211,15 +211,6 @@
                                         ; C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-(defun qt-assistant-search (&optional word)
-  (interactive)
-  (let ((w (or word (current-word)))
-        (p (or (get-process "assistant")
-               (start-process "assistant" "*assistant*"
-                              "/Qt/Qt5.2.1/5.2.1/msvc2012/bin/assistant"
-                              "-enableRemoteControl"))))
-    (process-send-string p (concat "activateKeyword " w))))
-
 (setq c-default-style "stroustrup"
       c-basic-offset 4
       indent-tabs-mode nil)
@@ -229,9 +220,7 @@
             (when (derived-mode-p 'c-mode 'c++-mode)
               (setq-default ac-sources '(ac-source-semantic-raw))
               (auto-complete-mode 1)
-              (c-set-offset 'innamespace 0)
-              (local-set-key (kbd "<C-h q") 'qt-assistant-search)
-              )))
+              (c-set-offset 'innamespace 0))))
 
 
                                         ; Paredit
