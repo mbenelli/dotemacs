@@ -8,14 +8,14 @@
   '(ace-jump-mode
     auto-complete
     autopair
+    golden-ratio
     helm
     helm-gtags
-    golden-ratio
     magit
     paredit
+    projectile
     slime
-    yasnippet
-    projectile))
+    yasnippet))
 
 (defun ensure-packages ()
   (dolist (p needed-packages)
