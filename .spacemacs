@@ -114,7 +114,7 @@ This function is called at the very end of Spacemacs initialization."
   (add-hook 'eww-mode-hook
             (lambda ()
               (evil-local-set-key 'normal (kbd "H") 'eww-back-url)
-              (evil-local-set-key 'normal (kbd "S") 'eww-forward-url)
+              (evil-local-set-key 'normal (kbd "L") 'eww-forward-url)
               (evil-local-set-key 'normal (kbd "y") 'eww-copy-page-url)
               (evil-local-set-key 'normal (kbd "d") 'eww-download)
               (evil-local-set-key 'normal (kbd "b") 'eww-add-bookmark)
