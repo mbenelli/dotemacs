@@ -83,8 +83,6 @@
   "This is were you can ultimately override default Spacemacs configuration.
 This function is called at the very end of Spacemacs initialization."
   (setq powerline-default-separator nil)
-  (spacemacs/set-font "Terminus" 12)
-  (golden-ratio-mode t)
   (add-hook 'emacs-lisp-mode-hook 'evil-lisp-state)
   (add-hook 'lisp-mode-hook 'evil-lisp-state)
   (add-hook 'scheme-mode-hook 'evil-lisp-state)
