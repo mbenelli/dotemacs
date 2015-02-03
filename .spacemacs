@@ -87,9 +87,10 @@ This function is called at the very end of Spacemacs initialization."
   (add-hook 'lisp-mode-hook 'evil-lisp-state)
   (add-hook 'scheme-mode-hook 'evil-lisp-state)
 
+  ;; Explicit require needed to have helm working with magit when calling
+  ;; magit-status just after emacs startup.
   (require 'helm)
-  (define-key helm-map (kbd "C-t") 'helm-next-line)
-  (define-key helm-map (kbd "C-n") 'helm-previous-line)
+  (setq helm-split-window-in-side-p t)
 
                                         ; C++
                                         ; TODO: move inside a layer
