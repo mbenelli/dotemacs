@@ -6,26 +6,11 @@ which require an initialization must be listed explicitly in the list.")
 (defvar custom-excluded-packages '()
   "List of packages to exclude.")
 
-;; For each package, define a function parker/init-<package-parker>
+;; For each package, define a function custom/init-<package>
 ;;
-(defun custom/init-custom ()
-  "Initialize custom package"
-                                        ; Semantic
-  (setq semantic-default-submodes
-        '(global-semanticdb-minor-mode
-          global-semantic-mru-bookmark-mode
-          global-semantic-idle-scheduler-mode
-          global-semantic-idle-completions-mode
-          global-semantic-idle-summary-mode))
-  (semantic-mode 1)
-  (require 'semantic/ia)
-
-                                        ; Hooks
+(defun custom/init-helm-gtags ()
+  (evil-define-key 'normal helm-gtags-mode-map (kbd "C-]") 'helm-gtags-dwim)
+  (evil-define-key 'normal helm-gtags-mode-map (kbd "C-t") 'helm-gtags-pop-stack)
   (add-hook 'c-mode-hook 'helm-gtags-mode)
   (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  
-)
-
-;; Often the body of an initialize function uses `use-package'
-;; For more info on `use-package', see readme:
-;; https://github.com/jwiegley/use-package
+  )
