@@ -100,6 +100,16 @@ This function is called at the very end of Spacemacs initialization."
         indent-tabs-mode nil)
   (c-set-offset 'innamespace 0)
 
+                                        ; Semantic
+  (setq semantic-default-submodes
+        '(global-semanticdb-minor-mode
+          global-semantic-mru-bookmark-mode
+          global-semantic-idle-scheduler-mode
+          global-semantic-idle-completions-mode
+          global-semantic-idle-summary-mode))
+  (semantic-mode 1)
+  (require 'semantic/ia)
+
                                         ; Eww
   (add-hook 'eww-mode-hook
             (lambda ()
