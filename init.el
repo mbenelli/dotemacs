@@ -8,7 +8,6 @@
   '(ace-jump-mode
     auto-complete
     autopair
-    golden-ratio
     helm
     helm-gtags
     magit
@@ -33,14 +32,16 @@
 (display-time-mode 1)
 (global-linum-mode -1)
 
-(require 'golden-ratio)
-(golden-ratio-mode)
 
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 (add-to-list 'Info-directory-list "~/.emacs.d/info")
 
                                         ; Keybindings
+(keyboard-translate ?\C-x ?\C-u)
+(keyboard-translate ?\C-u ?\C-x)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
 (global-set-key (kbd "C-c w") 'eww)
 (global-set-key (kbd "C-c i") 'erc-tls)
 (global-set-key (kbd "C-c s") 'eshell)
@@ -84,9 +85,8 @@
   (if (boundp 'helm-alive-p)
       (symbol-value 'helm-alive-p)))
 
-(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
-
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-h") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
