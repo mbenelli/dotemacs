@@ -34,10 +34,10 @@
 (display-time-mode 1)
 (global-linum-mode -1)
 
-                                        ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
                                         ; Keybindings
+
 ;; (keyboard-translate ?\C-x ?\C-u)
 ;; (keyboard-translate ?\C-u ?\C-x)
 ;; (global-set-key (kbd "C-h") 'delete-backward-char)
