@@ -37,8 +37,8 @@
 
 (when (not window-system)
   (set-face-inverse-video 'mode-line nil)
-  (set-face-foreground 'mode-line "black")
-  (set-face-background 'mode-line "white"))
+  (set-face-foreground 'mode-line "blue")
+  (set-face-background 'mode-line "brightwhite"))
 
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
