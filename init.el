@@ -28,11 +28,17 @@
 (setq inhibit-splash-screen t)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
-(scroll-bar-mode -1)
+(if (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
 (column-number-mode 1)
 (setq display-time-24hr-format t)
 (display-time-mode 1)
 (global-linum-mode -1)
+
+(when (not window-system)
+  (set-face-inverse-video 'mode-line nil)
+  (set-face-foreground 'mode-line "black")
+  (set-face-background 'mode-line "white"))
 
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
