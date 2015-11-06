@@ -1,4 +1,5 @@
 ;; Emacs configuration file
+
 					; Packages
 (require 'package)
 (add-to-list 'package-archives
@@ -38,7 +39,9 @@
 (when (not window-system)
   (set-face-inverse-video 'mode-line nil)
   (set-face-foreground 'mode-line "blue")
-  (set-face-background 'mode-line "brightwhite"))
+  (set-face-background 'mode-line "brightwhite")
+  (set-face-foreground 'mode-line-inactive "grey70")
+  (set-face-background 'mode-line-inactive "brightwhite"))
 
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
