@@ -55,7 +55,7 @@
 (global-set-key (kbd "C-c w") 'eww)
 (global-set-key (kbd "C-c e") 'mu4e)
 (global-set-key (kbd "C-c i") 'erc-tls)
-(global-set-key (kbd "C-c s") 'eshell)
+(global-set-key (kbd "C-c s") 'shell)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c h") 'help-map)
 
@@ -163,7 +163,7 @@
 
                                         ; Projectile
 (projectile-global-mode)
-(setq projectile-completion-system 'helm)
+(setq projectile-completion-system 'ido)
 (setq projectile-mod-line nil)
 
                                         ; Semantic
