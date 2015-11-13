@@ -57,7 +57,7 @@
 ;; (global-set-key (kbd "C-x C-h") 'execute-extended-command)
 
 (global-set-key (kbd "C-c w") 'eww)
-(global-set-key (kbd "C-c e") 'mu4e)
+(global-set-key (kbd "C-c m") 'mu4e)
 (global-set-key (kbd "C-c i") 'erc-tls)
 (global-set-key (kbd "C-c s") 'shell)
 (global-set-key (kbd "C-c g") 'magit-status)
