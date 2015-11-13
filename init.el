@@ -62,6 +62,7 @@
 (global-set-key (kbd "C-c s") 'shell)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c h") 'help-map)
+(global-set-key (kbd "C-c j") 'org-jira-get-issues)
 
                                         ; Environment
 (setenv "PAGER" "cat")
