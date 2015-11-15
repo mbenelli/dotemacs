@@ -48,10 +48,11 @@
 
                                         ; Keybindings
 
-(keyboard-translate ?\C-x ?\C-u)
-(keyboard-translate ?\C-u ?\C-x)
+(define-key key-translation-map [?\C-x] [?\C-u])
+(define-key key-translation-map [?\C-u] [?\C-x])
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-x C-h") 'execute-extended-command)
+(global-set-key (kbd "C-x DEL") 'execute-extended-command)
 
 (global-set-key (kbd "C-c w") 'eww)
 (global-set-key (kbd "C-c m") 'mu4e)
