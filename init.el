@@ -6,14 +6,11 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (setq package-enable-at-startup nil)
 (defvar needed-packages
-  '(ace-jump-mode
-    auto-complete
-    autopair
+  '(autopair
     magit
     paredit
     projectile
     slime
-    w3m
     markdown-mode
     yasnippet
 ))
@@ -51,10 +48,10 @@
 
                                         ; Keybindings
 
-;; (keyboard-translate ?\C-x ?\C-u)
-;; (keyboard-translate ?\C-u ?\C-x)
-;; (global-set-key (kbd "C-h") 'delete-backward-char)
-;; (global-set-key (kbd "C-x C-h") 'execute-extended-command)
+(keyboard-translate ?\C-x ?\C-u)
+(keyboard-translate ?\C-u ?\C-x)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "C-x C-h") 'execute-extended-command)
 
 (global-set-key (kbd "C-c w") 'eww)
 (global-set-key (kbd "C-c m") 'mu4e)
@@ -88,23 +85,20 @@
 (ido-mode 1)
 
                                         ; mu4e
-(setq load-path (cons "/usr/share/emacs/site-lisp/mu4e" load-path))
-(require 'mu4e)
-(setq
- mu4e-maildir "~/.mail"
- mu4e-sent-folder "/Sent Items"
- mu4e-drafts-folder "/Drafts"
- mu4e-trash-folder "/Deleted Items")
+;; (setq load-path (cons "/usr/share/emacs/site-lisp/mu4e" load-path))
+;; (require 'mu4e)
+;; (setq
+;;  mu4e-maildir "~/.mail"
+;;  mu4e-sent-folder "/Sent Items"
+;;  mu4e-drafts-folder "/Drafts"
+;;  mu4e-trash-folder "/Deleted Items")
 
-;;(require 'mu4e-contrib)
-;;(setq mu4e-html2text-command 'mu4e-shr2text)
-
-(setq mu4e-html2text-command "html2text -utf8 -width 72")
-(add-hook 'mu4e-view-mode-hook
-  (lambda()
-     ;; try to emulate some of the eww key-bindings
-    (local-set-key (kbd "<tab>") 'shr-next-link)
-    (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
+;; (add-hook 'mu4e-view-mode-hook
+;;   (lambda()
+;;      ;; try to emulate some of the eww key-bindings
+;;     (local-set-key (kbd "<tab>") 'shr-next-link)
+;;     (local-set-key (kbd "<backtab>") 'shr-previous-link)))
 
                                         ; Rmail
 (setq rmail-preserve-inbox t)
@@ -159,10 +153,6 @@
 (autopair-global-mode 1)
 (setq autopair-autowrap t)
 
-                                        ; Ace jump
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
                                         ; Irc
 (require 'erc)
 
@@ -193,9 +183,9 @@
 ;; (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
 
                                         ; Elisp
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (auto-complete-mode 1)))
+;; (add-hook 'emacs-lisp-mode-hook
+;;           (lambda ()
+;;             (auto-complete-mode 1)))
 
                                         ; C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -205,7 +195,7 @@
       indent-tabs-mode nil)
 
                                         ; clang-complete
-(require 'auto-complete-clang-async)
+;;(require 'auto-complete-clang-async)
 
 (defun ac-cc-mode-setup ()
   (setq ac-clang-complete-executable "~/.emacs.d/clang-complete/clang-complete")
@@ -217,8 +207,8 @@
             (when (derived-mode-p 'c-mode 'c++-mode)
               (setq show-trailing-whitespace t)
 ;;              (setq-default ac-sources '(ac-source-semantic-raw))
-              (ac-cc-mode-setup)
-              (auto-complete-mode 1)
+;;              (ac-cc-mode-setup)
+;;              (auto-complete-mode 1)
               (c-set-offset 'innamespace 0))))
 
 
