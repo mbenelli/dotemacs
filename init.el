@@ -177,17 +177,17 @@
 
                                         ; Semantic
 
-(setq semantic-default-submodes
-             '(global-semanticdb-minor-mode
-               global-semantic-mru-bookmark-mode
-               global-semantic-idle-scheduler-mode
-               global-semantic-idle-completions-mode
-               global-semantic-idle-summary-mode))
-(semantic-mode 1)
+;; (setq semantic-default-submodes
+;;              '(global-semanticdb-minor-mode
+;;                global-semantic-mru-bookmark-mode
+;;                global-semantic-idle-scheduler-mode
+;;                global-semantic-idle-completions-mode
+;;                global-semantic-idle-summary-mode))
+;; (semantic-mode 1)
 
-(setq semantic-symref-tool 'global)
+;; (setq semantic-symref-tool 'global)
 
-(require 'semantic/ia)
+;; (require 'semantic/ia)
 
                                         ; yasnippet
 ;; (require 'yasnippet)
@@ -208,13 +208,18 @@
       c-basic-offset 4
       indent-tabs-mode nil)
 
+                                        ; Rtags
+(setq load-path (cons (concat (getenv "HOME") "prjs/rtags/src") load-path))
+(require 'rtags)
+(require 'rtags-ac)
+
                                         ; clang-complete
 ;;(require 'auto-complete-clang-async)
 
-(defun ac-cc-mode-setup ()
-  (setq ac-clang-complete-executable "~/.emacs.d/clang-complete/clang-complete")
-  (setq ac-sources '(ac-source-clang-async))
-  (ac-clang-launch-completion-process))
+;; (defun ac-cc-mode-setup ()
+;;   (setq ac-clang-complete-executable "~/.emacs.d/clang-complete/clang-complete")
+;;   (setq ac-sources '(ac-source-clang-async))
+;;   (ac-clang-launch-completion-process))
 
 (add-hook 'c-mode-common-hook
           (lambda ()
