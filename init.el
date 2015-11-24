@@ -36,7 +36,11 @@
 (global-linum-mode -1)
 
 (when (not window-system)
-  (set-face-background 'vertical-border "brightwhite"))
+  (set-face-background 'vertical-border "brightwhite")
+  (set-face-foreground 'vertical-border "grey")
+  (set-display-table-slot standard-display-table
+                          'vertical-border
+                          (make-glyph-code ?┃)))
 
 ;; (when (not window-system)
 ;;   (set-face-inverse-video 'mode-line nil)
