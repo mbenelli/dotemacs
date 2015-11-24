@@ -6,8 +6,10 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (setq package-enable-at-startup nil)
 (defvar needed-packages
-  '(autopair
+  '(auto-complete-c-headers
+    autopair
     magit
+    magit-gerrit
     paredit
     projectile
     slime
