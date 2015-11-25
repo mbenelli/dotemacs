@@ -8,6 +8,7 @@
 (defvar needed-packages
   '(auto-complete-c-headers
     autopair
+    company
     magit
     magit-gerrit
     paredit
@@ -198,6 +199,10 @@
 (setq load-path (cons (concat (getenv "HOME") "prjs/rtags/src") load-path))
 (require 'rtags)
 (require 'rtags-ac)
+(require 'company-rtags)
+
+(rtags-enable-standard-keybindings c-mode-base-map)
+(setq rtags-completions-enabled t)
 
                                         ; clang-complete
 ;;(require 'auto-complete-clang-async)
