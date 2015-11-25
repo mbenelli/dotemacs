@@ -35,20 +35,6 @@
 (display-time-mode 1)
 (global-linum-mode -1)
 
-(when (not window-system)
-  (set-face-background 'vertical-border "brightwhite")
-  (set-face-foreground 'vertical-border "grey")
-  (set-display-table-slot standard-display-table
-                          'vertical-border
-                          (make-glyph-code ?┃)))
-
-;; (when (not window-system)
-;;   (set-face-inverse-video 'mode-line nil)
-;;   (set-face-foreground 'mode-line "blue")
-;;   (set-face-background 'mode-line "brightwhite")
-;;   (set-face-foreground 'mode-line-inactive "grey70")
-;;   (set-face-background 'mode-line-inactive "brightwhite"))
-
                                         ; Path for local customizations.
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
