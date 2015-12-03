@@ -20,11 +20,11 @@
 
 (defun ensure-packages ()
   (dolist (p needed-packages)
-    (unless (pkg-info-package-version p)
-      (install-package p))))
+    (unless (package-installed-p p)
+      (package-install p))))
 
 (package-initialize)
-
+(ensure-packages)
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 (tool-bar-mode 0)
