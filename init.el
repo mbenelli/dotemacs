@@ -38,7 +38,7 @@
 (if (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
 (column-number-mode 1)
-(setq display-time-24hr-format t)
+
 (display-time-mode 1)
 (global-linum-mode -1)
 
@@ -66,7 +66,6 @@
 (setq make-backup-files nil)
 (setq default-directory "~/")
 (setq-default indent-tabs-mode nil)
-(setq display-time-24hr-format t)
 (setq ring-bell-function 'ignore)
 (setq compilation-scroll-output 'first-error)
 
