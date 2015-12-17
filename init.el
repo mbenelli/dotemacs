@@ -1,4 +1,10 @@
-;; Emacs configuration file
+;;; init.el ---  emacs configuration file.
+;;; Commentary:
+;;; Starting point in emacs configuration.
+
+;;; Code:
+
+(require 'cl-lib)
 
 					; Packages
 (require 'package)
@@ -347,3 +353,9 @@ want to use in the modeline *in lieu of* the original.")
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(provide 'init)
+;;; init.el ends here
+
+
+
