@@ -84,7 +84,7 @@
 
                                         ; Mail
 
-(setq load-path (cons "/usr/share/emacs/site-lisp/mu4e" load-path))
+(setq load-path (cons "~/.emacs.d/mu/share/emacs/site-lisp/mu4e" load-path))
 (require 'mu4e)
 (setq
  mu4e-maildir "~/.mail"
@@ -347,6 +347,7 @@ want to use in the modeline *in lieu of* the original.")
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(display-time-24hr-format t)
+ '(mu4e-mu-binary "~/.emacs.d/mu/bin/mu")
  '(send-mail-function (quote sendmail-send-it))
  '(w3m-enable-google-feeling-lucky nil)
  '(w3m-search-default-engine "duckduckgo")
