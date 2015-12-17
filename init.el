@@ -8,29 +8,35 @@
 
 					; Packages
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(setq package-enable-at-startup nil)
-(defvar needed-packages
-  '(auto-complete-c-headers
-    autopair
-    company
-    magit
-    magit-gerrit
-    paredit
-    projectile
-    slime
-    markdown-mode
-    yasnippet
-))
-
-(defun ensure-packages ()
-  (dolist (p needed-packages)
-    (unless (package-installed-p p)
-      (package-install p))))
-
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
-(ensure-packages)
+(unless package-activated-list (package-refresh-contents))
+(let ((needed-packages '(ace-jump-mode
+			 auto-complete-c-headers
+			 auto-complete-clang
+			 autopair
+			 cmake-ide
+			 cmake-mode
+			 company
+			 elisp-slime-nav
+			 flycheck
+			 flycheck-haskell
+			 haskell-mode
+			 magit
+			 magit-gerrit
+			 paredit
+			 popup
+			 projectile
+			 rtags
+			 slime
+			 markdown-mode
+			 yasnippet)))
+  (when (or (null package-activated-list) (cl-set-difference package-activated-list needed-packages))
+    (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
+	  needed-packages)))
+
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 (tool-bar-mode 0)
