@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(require 'cl-lib)
+(require 'cl-lib)  ; cl-set-difference
 
 					; Packages
 (require 'package)
@@ -53,17 +53,12 @@
 
                                         ; Keybindings
 
-;;(define-key key-translation-map [?\C-x] [?\C-u])
-;;(define-key key-translation-map [?\C-u] [?\C-x])
-;;(global-set-key (kbd "C-h") 'delete-backward-char)
-;;(global-set-key (kbd "C-x C-h") 'execute-extended-command)
-;;(global-set-key (kbd "C-x DEL") 'execute-extended-command)
-
 (global-set-key (kbd "C-c w") 'eww)
 (global-set-key (kbd "C-c i") 'erc-tls)
 (global-set-key (kbd "C-c s") 'eshell)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c h") 'help-map)
+(global-set-key (kbd "C-c m") 'mu4e)
 
                                         ; Environment
 (setenv "PAGER" "cat")
@@ -87,11 +82,23 @@
                                         ; Ido
 (ido-mode 1)
 
-                                        ; Rmail
-(setq rmail-preserve-inbox t)
-(setq rmail-movemail-program "/usr/bin/movemail")
-(setq rmail-movemail-variant-in-use 'mailutils)
-(setq rmail-primary-inbox-list '("maildir://.mail/Inbox"))
+                                        ; Mail
+
+(setq load-path (cons "/usr/share/emacs/site-lisp/mu4e" load-path))
+(require 'mu4e)
+(setq
+ mu4e-maildir "~/.mail"
+ mu4e-sent-folder "/Sent Items"
+ mu4e-drafts-folder "/Drafts"
+ mu4e-trash-folder "/Deleted Items")
+
+(setq mu4e-html2text-command "html2text -utf8 -width 72")
+(add-hook 'mu4e-view-mode-hook
+  (lambda()
+     ;; try to emulate some of the eww key-bindings
+    (local-set-key (kbd "<tab>") 'shr-next-link)
+    (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+
 
                                         ; Org
 (add-hook 'org-mode-hook
