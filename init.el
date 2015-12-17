@@ -168,31 +168,38 @@
 (setq projectile-completion-system 'ido)
 (setq projectile-mod-line nil)
 
-                                        ; Semantic
-
-;; (setq semantic-default-submodes
-;;              '(global-semanticdb-minor-mode
-;;                global-semantic-mru-bookmark-mode
-;;                global-semantic-idle-scheduler-mode
-;;                global-semantic-idle-completions-mode
-;;                global-semantic-idle-summary-mode))
-;; (semantic-mode 1)
-
-;; (setq semantic-symref-tool 'global)
-
-;; (require 'semantic/ia)
-
                                         ; yasnippet
-;; (require 'yasnippet)
-;; (yas-global-mode 1)
-;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
-;; (define-key yas-minor-mode-map (kbd "TAB") nil)
-;; (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+(require 'yasnippet)
+(setq yas-sineppet-dirs '("~/.emacs.d/snippets"))
+(yas-global-mode 1)
+
+                                        ; autocomplete
+(require 'company)
+(setq company-backends (delete 'company-semantic company-backends))
+(setq company-idle-delay 0)
+
+(require 'auto-complete)
+(require 'auto-complete-config)
+(ac-config-default)
+(setq ac-quick-help-delay 0)
+(define-key ac-complete-mode-map "\t" 'ac-complete)
+(define-key ac-complete-mode-map [return] nil)
+(define-key ac-complete-mode-map "\r" nil)
+(define-key ac-mode-map [C-return] 'auto-complete)
+(setq ac-candidate-limit 100)
+
+(defun auto-complete-mode-maybe ()
+  "Auto complete everywhere."
+  (unless (minibufferp (current-buffer))
+    (auto-complete-mode 1)))
+
+(require 'auto-complete-clang)
+;;(require 'c++-include-files)
 
                                         ; Elisp
-;; (add-hook 'emacs-lisp-mode-hook
-;;           (lambda ()
-;;             (auto-complete-mode 1)))
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (auto-complete-mode 1)))
 
                                         ; C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -202,31 +209,66 @@
       indent-tabs-mode nil)
 
                                         ; Rtags
-(setq load-path (cons (concat (getenv "HOME") "prjs/rtags/src") load-path))
 (require 'rtags)
+(require 'popup)
 (require 'rtags-ac)
 (require 'company-rtags)
 
 (rtags-enable-standard-keybindings c-mode-base-map)
 (setq rtags-completions-enabled t)
 
-                                        ; clang-complete
-;;(require 'auto-complete-clang-async)
+(define-key c-mode-base-map (kbd "M-.") 'rtags-find-symbol-at-point)
+(define-key c-mode-base-map (kbd "M-,") 'rtags-find-references-at-point)
 
-;; (defun ac-cc-mode-setup ()
-;;   (setq ac-clang-complete-executable "~/.emacs.d/clang-complete/clang-complete")
-;;   (setq ac-sources '(ac-source-clang-async))
-;;   (ac-clang-launch-completion-process))
 
+                                        ; cmake-ide
+;; (cmake-ide-setup)
+;; (setq cmake-ide-flags-C++ (append '("-std=c++1y")
+;;                                   (mapcar (lambda (path) (concat "-I" path))
+;;                                           (c++-include-paths))))
+;; (setq cmake-ide-flags-c '("-I/usr/include"))
+
+                                        ; C++
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode)
+              (setq compilation-scroll-output 'first-error)
               (setq show-trailing-whitespace t)
-;;              (setq-default ac-sources '(ac-source-semantic-raw))
-;;              (ac-cc-mode-setup)
-;;              (auto-complete-mode 1)
               (c-set-offset 'innamespace 0))))
 
+                                        ; autocomplete headers
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (require 'auto-complete-c-headers)
+            (setq ac-sources
+                  '(ac-source-c-headers ac-source-clang ac-source-yasnippet))
+            (setq company-backends
+                  '(company-rtags company-clang company-keywords
+                                  company-yasnippet company-files))
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            (auto-complete-mode 0)
+            (company-mode 1)
+            (global-set-key [C-return] 'company-complete-common)))
+
+(defun toggle-ac ()
+  "Toggle between auto-complete and company."
+  (interactive)
+  (if (bound-and-true-p auto-complete-mode)
+      (progn
+        (auto-complete-mode 0)
+        (company-mode 1)
+        (global-set-key [C-return] 'company-complete-common))
+    (progn
+      (company-mode 0)
+      (auto-complete-mode 1)
+      (global-set-key [C-return] 'auto-complete))))
+
+                                        ; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11y")))
+
+                                        ; misc
+(autoload 'ace-jump-mode "ace-jump-mode")
 
                                         ; Paredit
 (autoload 'enable-paredit-mode "paredit"
@@ -258,8 +300,7 @@
 
                                         ; Mode line cleaner
 (defvar mode-line-cleaner-alist
-  `((auto-complete-mode . " α")
-    (yas/minor-mode . " y")
+  `((yas/minor-mode . " y")
     (yas-minor-mode . " y")
     (paredit-mode . " π")
     (eldoc-mode . "")
@@ -284,6 +325,7 @@ must pass the correct minor/major mode symbol and a string you
 want to use in the modeline *in lieu of* the original.")
 
 (defun clean-mode-line ()
+  "Clean-up the mode-line according to rules defined in `mode-line-cleaner-alist'."
   (interactive)
   (dolist (cleaner mode-line-cleaner-alist)
     (let* ((mode (car cleaner))
@@ -305,6 +347,7 @@ want to use in the modeline *in lieu of* the original.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-time-24hr-format t)
  '(send-mail-function (quote sendmail-send-it))
  '(w3m-enable-google-feeling-lucky nil)
  '(w3m-search-default-engine "duckduckgo")
