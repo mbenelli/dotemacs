@@ -40,6 +40,8 @@
 
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
+(add-to-list 'same-window-regexps "\*magit: .*\*")
+
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (if (fboundp 'scroll-bar-mode)
