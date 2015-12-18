@@ -14,6 +14,7 @@
 (package-initialize)
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
+                         ag
 			 auto-complete-c-headers
 			 auto-complete-clang
 			 autopair
