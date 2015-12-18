@@ -10,3 +10,15 @@ The following key binding are good for dvorak layout:
 
 But they makes me unable to use every instance of emacs that doesn't
 provide them :) so I decided to keep the standards.
+
+## Mu dependecies
+
+gmime-2.6
+xapian
+
+## Mu compilation
+autoreconf -i
+./configure --prefix=$HOME/.emacs.d/mu
+make check
+make install
+
