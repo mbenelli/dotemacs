@@ -29,6 +29,7 @@
 			 magit-gerrit
 			 paredit
 			 popup
+                         pretty-lambdada
 			 projectile
 			 rtags
 			 slime
@@ -50,6 +51,9 @@
 
 (display-time-mode 1)
 (global-linum-mode -1)
+
+(require 'pretty-lambdada)
+(pretty-lambda-for-modes)
 
                                         ; Path for local customizations.
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
@@ -97,7 +101,7 @@
 
 (setq mu4e-html2text-command "html2text -utf8 -width 72")
 (add-hook 'mu4e-view-mode-hook
-  (lambda()
+  (lambda ()
      ;; try to emulate some of the eww key-bindings
     (local-set-key (kbd "<tab>") 'shr-next-link)
     (local-set-key (kbd "<backtab>") 'shr-previous-link)))
