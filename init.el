@@ -308,17 +308,17 @@
     (eldoc-mode . "")
     (abbrev-mode . "")
     (golden-ratio-mode . "")
-    (projectile-mode . " p")
+    (projectile-mode . " Π")
     (magit-auto-revert-mode . "")
     (helm-mode . " h")
     (helm-gtags-mode . " gh")
     (autopair-mode . "")
-    (auto-complete-mode . " ac")
+    (auto-complete-mode . " α")
     ;; Major modes
     (lisp-interaction-mode . "λ")
     (hi-lock-mode . "")
     (python-mode . "Py")
-    (emacs-lisp-mode . "eλ")
+    (emacs-lisp-mode . "ɛλ")
     (nxhtml-mode . "nx"))
   "Alist for `clean-mode-line'.
 
