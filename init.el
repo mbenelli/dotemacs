@@ -304,6 +304,7 @@
   `((yas/minor-mode . " y")
     (yas-minor-mode . " y")
     (paredit-mode . " π")
+    (flycheck-mode . " φ")
     (eldoc-mode . "")
     (abbrev-mode . "")
     (golden-ratio-mode . "")
@@ -314,10 +315,10 @@
     (autopair-mode . "")
     (auto-complete-mode . " ac")
     ;; Major modes
-    (lisp-interaction-mode . "lisp")
+    (lisp-interaction-mode . "λ")
     (hi-lock-mode . "")
     (python-mode . "Py")
-    (emacs-lisp-mode . "elisp")
+    (emacs-lisp-mode . "eλ")
     (nxhtml-mode . "nx"))
   "Alist for `clean-mode-line'.
 
