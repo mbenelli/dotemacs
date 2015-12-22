@@ -299,9 +299,6 @@
 
 (setq gnus-select-method '(nntp "news.gmane.org"))
 
-                                        ; W3m
-(setq w3m-use-tab nil)
-
                                         ; Mode line cleaner
 (defvar mode-line-cleaner-alist
   `((yas/minor-mode . " y")
@@ -353,10 +350,7 @@ want to use in the modeline *in lieu of* the original.")
  ;; If there is more than one, they won't work right.
  '(display-time-24hr-format t)
  '(mu4e-mu-binary "~/.emacs.d/mu/bin/mu")
- '(send-mail-function (quote sendmail-send-it))
- '(w3m-enable-google-feeling-lucky nil)
- '(w3m-search-default-engine "duckduckgo")
- '(w3m-session-crash-recovery nil))
+ '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
