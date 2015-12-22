@@ -76,7 +76,6 @@
 (setq default-directory "~/")
 (setq-default indent-tabs-mode nil)
 (setq ring-bell-function 'ignore)
-(setq compilation-scroll-output 'first-error)
 
 (setq buffer-file-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
@@ -351,6 +350,7 @@ want to use in the modeline *in lieu of* the original.")
  ;; If there is more than one, they won't work right.
  '(display-time-24hr-format t)
  '(mu4e-mu-binary "~/.emacs.d/mu/bin/mu")
+ '(compilation-scroll-output 'first-error)
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
