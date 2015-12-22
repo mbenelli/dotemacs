@@ -66,6 +66,7 @@
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c h") 'help-map)
 (global-set-key (kbd "C-c m") 'mu4e)
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
                                         ; Environment
 (setenv "PAGER" "cat")
