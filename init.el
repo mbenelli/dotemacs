@@ -291,8 +291,6 @@
 ;;(autoload 'qml-mode "qml-mode" "Editing Qt Declarative." t)
 ;;(add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
 
-                                        ; Python
-(setq python-indent 4)
 
                                         ; Javascript
 (setq js-indent-level 4)
