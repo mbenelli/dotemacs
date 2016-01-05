@@ -271,7 +271,7 @@
 
                                         ; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11y")))
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
                                         ; misc
 (autoload 'ace-jump-mode "ace-jump-mode")
