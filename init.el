@@ -49,7 +49,7 @@
     (scroll-bar-mode -1))
 (column-number-mode 1)
 
-(display-time-mode 1)
+(display-time-mode)
 (global-linum-mode -1)
 (global-font-lock-mode -1)
 
