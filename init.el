@@ -51,7 +51,7 @@
 
 (display-time-mode 1)
 (global-linum-mode -1)
-(global-font-lock-mode 0)
+(global-font-lock-mode -1)
 
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
