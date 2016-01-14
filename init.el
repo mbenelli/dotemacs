@@ -225,6 +225,7 @@
 
 (define-key c-mode-base-map (kbd "M-.") 'rtags-find-symbol-at-point)
 (define-key c-mode-base-map (kbd "M-,") 'rtags-find-references-at-point)
+(define-key c-mode-base-map (kbd "M-*") 'rtags-location-stack-back)
 
 
                                         ; cmake-ide
