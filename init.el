@@ -316,8 +316,10 @@
     (helm-gtags-mode . " gh")
     (autopair-mode . "")
     (auto-complete-mode . " α")
+    (company-mode . " c")
     ;; Major modes
     (lisp-interaction-mode . "λ")
+    (scheme-mode . "λ")
     (hi-lock-mode . "")
     (python-mode . "Py")
     (emacs-lisp-mode . "ɛλ")
@@ -351,9 +353,11 @@ want to use in the modeline *in lieu of* the original.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(compilation-scroll-output (quote first-error))
  '(display-time-24hr-format t)
+ '(battery-mode-line-format "[%b%p%%]")
+ '(eww-download-directory "~/downloads/")
  '(mu4e-mu-binary "~/.emacs.d/mu/bin/mu")
- '(compilation-scroll-output 'first-error)
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
