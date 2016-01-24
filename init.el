@@ -124,8 +124,7 @@
 
 (add-hook 'markdown-mode-hook
           '(lambda nil
-             (visual-line-mode)
-             (set-fill-column 50)))
+             (visual-line-mode)))
 
                                         ; Eshell
 (require 'eshell)
