@@ -65,7 +65,7 @@
 
 (global-set-key (kbd "C-c w") 'eww)
 (global-set-key (kbd "C-c i") 'erc-tls)
-(global-set-key (kbd "C-c s") 'shell)
+(global-set-key (kbd "C-c s") 'eshell)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c h") 'help-map)
 (global-set-key (kbd "C-c m") 'mu4e)
