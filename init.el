@@ -51,7 +51,6 @@
 
 (display-time-mode)
 (global-linum-mode -1)
-(global-font-lock-mode -1)
 
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
@@ -84,7 +83,7 @@
 (set-default-coding-systems 'utf-8-unix)
 (set-language-environment "utf-8")
 
-(global-font-lock-mode 3)
+(global-font-lock-mode -1)
 
 (auto-save-mode 0)
 
