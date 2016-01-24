@@ -35,7 +35,8 @@
 			 slime
 			 markdown-mode
 			 yasnippet)))
-  (when (or (null package-activated-list) (cl-set-difference package-activated-list needed-packages))
+  (when (or (null package-activated-list)
+            (cl-set-difference package-activated-list needed-packages))
     (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
 	  needed-packages)))
 
@@ -57,7 +58,8 @@
 
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
-(setq Info-directory-list (cons "~/opt/gambit/current/info" Info-default-directory-list))
+(setq Info-directory-list
+      (cons "~/opt/gambit/current/info" Info-default-directory-list))
 
                                         ; Keybindings
 
