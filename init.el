@@ -56,8 +56,9 @@
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
 
-                                        ; Path for local customizations.
+                                        ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
+(setq Info-directory-list (cons "~/opt/gambit/current/info" Info-default-directory-list))
 
                                         ; Keybindings
 
