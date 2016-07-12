@@ -57,6 +57,13 @@
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
 
+                                        ; Fonts
+(let* ((m+ "M+ 1m-8")
+       (source-code "Source Code Pro-8")
+       (fira-code "Fira Code-10")
+       (font fira-code))
+  (set-frame-font font))
+
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 (setq Info-directory-list
