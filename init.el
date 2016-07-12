@@ -93,24 +93,6 @@
                                         ; Ido
 (ido-mode 1)
 
-                                        ; Mail
-
-(setq load-path (cons "~/.emacs.d/mu/share/emacs/site-lisp/mu4e" load-path))
-(require 'mu4e)
-(setq
- mu4e-maildir "~/.mail"
- mu4e-sent-folder "/Sent Items"
- mu4e-drafts-folder "/Drafts"
- mu4e-trash-folder "/Deleted Items")
-
-(setq mu4e-html2text-command "html2text -utf8 -width 72")
-(add-hook 'mu4e-view-mode-hook
-  (lambda ()
-     ;; try to emulate some of the eww key-bindings
-    (local-set-key (kbd "<tab>") 'shr-next-link)
-    (local-set-key (kbd "<backtab>") 'shr-previous-link)))
-
-
                                         ; Org
 (add-hook 'org-mode-hook
           '(lambda nil
@@ -359,7 +341,6 @@ want to use in the modeline *in lieu of* the original.")
  '(display-time-24hr-format t)
  '(battery-mode-line-format "[%b%p%%]")
  '(eww-download-directory "~/downloads/")
- '(mu4e-mu-binary "~/.emacs.d/mu/bin/mu")
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
