@@ -24,6 +24,7 @@
 			 elisp-slime-nav
 			 flycheck
 			 flycheck-haskell
+                         fsharp-mode
 			 haskell-mode
 			 magit
 			 magit-gerrit
