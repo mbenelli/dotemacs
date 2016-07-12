@@ -168,7 +168,7 @@
 
                                         ; yasnippet
 (require 'yasnippet)
-(setq yas-sineppet-dirs '("~/.emacs.d/snippets"))
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
                                         ; autocomplete
