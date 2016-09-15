@@ -62,7 +62,8 @@
        (source-code "Source Code Pro-8")
        (fira-code "Fira Code-10")
        (font fira-code))
-  (set-frame-font font))
+  (set-frame-font m+))
+
 
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
