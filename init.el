@@ -68,7 +68,7 @@
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 (setq Info-directory-list
-      (cons "~/opt/gambit/current/info" Info-default-directory-list))
+      (cons "~/opt/gambit/current/info" Info-directory-list))
 
                                         ; Keybindings
 
