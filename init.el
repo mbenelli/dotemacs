@@ -1,6 +1,6 @@
 ;;; init.el ---  emacs configuration file.
 ;;; Commentary:
-;;; Starting point in emacs configuration.
+;;; Starting point in Emacs configuration.
 
 ;;; Code:
 
