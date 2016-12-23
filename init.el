@@ -80,6 +80,14 @@
 (global-set-key (kbd "C-c m") 'mu4e)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
+                                        ; Special characters
+(fset 'euro
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([24 56 return 35 120 50 48 65 67 return] 0 "%d")) arg)))
+
                                         ; Environment
 (setenv "PAGER" "cat")
 
