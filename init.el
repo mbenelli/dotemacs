@@ -88,6 +88,28 @@
         (kmacro-exec-ring-item
          (quote ([24 56 return 35 120 50 48 65 67 return] 0 "%d")) arg)))
 
+(fset 'flat
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([24 56 return 35 120 50 54 54 68 return] 0 "%d")) arg)))
+
+(fset 'sharp
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([24 56 return 35 120 50 54 54 70 return] 0 "%d")) arg)))
+
+(fset 'natural
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([24 56 return 35 120 50 54 54 69 return] 0 "%d")) arg)))
+
+
                                         ; Environment
 (setenv "PAGER" "cat")
 
