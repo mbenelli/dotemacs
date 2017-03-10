@@ -147,6 +147,10 @@
           '(lambda nil
              (visual-line-mode)))
 
+                                        ; Lilypond
+(autoload 'LilyPond-mode "lilypond-mode")
+(add-to-list 'auto-mode-alist '("\\.ly$" . LilyPond-mode))
+
                                         ; Eshell
 (require 'eshell)
 (require 'em-smart)
