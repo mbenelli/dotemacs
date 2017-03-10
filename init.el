@@ -150,6 +150,10 @@
                                         ; Lilypond
 (autoload 'LilyPond-mode "lilypond-mode")
 (add-to-list 'auto-mode-alist '("\\.ly$" . LilyPond-mode))
+(add-hook 'LilyPond-mode-hook
+          '(lambda nil
+             (define-key LilyPond-mode-map "\C-c\C-p"
+               'LilyPond-command-viewpdf)))
 
                                         ; Eshell
 (require 'eshell)
