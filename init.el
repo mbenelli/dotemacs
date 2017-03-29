@@ -6,6 +6,31 @@
 
 (require 'cl-lib)  ; cl-set-difference
 
+                                        ; Widgets and themes
+(setq inhibit-splash-screen t)
+
+(when window-system
+  (let* ((m+ "M+ 1m-9")
+         (source-code "Source Code Pro-9")
+         (fira-code "Fira Code-10")
+         (font fira-code))
+    (setq default-frame-alist
+          `((fullscreen . nil)
+            (font . ,source-code)
+            (width . 80)
+            (height . 48)))))
+
+(add-to-list 'same-window-regexps "\*magit: .*\*")
+
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(if (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+(column-number-mode 1)
+
+(display-time-mode)
+(global-linum-mode -1)
+
 					; Packages
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -41,29 +66,11 @@
     (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
 	  needed-packages)))
 
-                                        ; Widgets and themes
-(setq inhibit-splash-screen t)
-(add-to-list 'same-window-regexps "\*magit: .*\*")
 
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(if (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode -1))
-(column-number-mode 1)
-
-(display-time-mode)
-(global-linum-mode -1)
+                                        ; Pretty lambda
 
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
-
-                                        ; Fonts
-(let* ((m+ "M+ 1m-8")
-       (source-code "Source Code Pro-8")
-       (fira-code "Fira Code-10")
-       (font fira-code))
-  (set-frame-font m+))
-
 
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
@@ -87,6 +94,20 @@
         (interactive "p")
         (kmacro-exec-ring-item
          (quote ([24 56 return 35 120 50 48 65 67 return] 0 "%d")) arg)))
+
+(fset 'diminished
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([24 56 return 35 120 50 50 49 56 return] 0 "%d")) arg)))
+
+(fset 'half-diminished
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([24 56 return 35 120 50 51 48 48 return] 0 "%d")) arg)))
 
 (fset 'flat
       (lambda (&optional arg)
