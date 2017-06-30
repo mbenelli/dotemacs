@@ -95,6 +95,14 @@
         (kmacro-exec-ring-item
          (quote ([24 56 return 35 120 50 48 65 67 return] 0 "%d")) arg)))
 
+(fset 'section
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([24 56 return 35 120 48 48 65 55 return] 0 "%d")) arg)))
+
+
 (fset 'diminished
       (lambda (&optional arg)
         "Keyboard macro."
