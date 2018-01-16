@@ -22,7 +22,9 @@
 
 (add-to-list 'same-window-regexps "\*magit: .*\*")
 
-(tool-bar-mode 0)
+(if (display-graphic-p)
+    (tool-bar-mode 0))
+
 (menu-bar-mode 0)
 (if (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
