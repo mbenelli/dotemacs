@@ -162,6 +162,9 @@
                                         ; Ido
 (ido-mode 1)
 
+                                        ; Tramp
+(setq tramp-default-method "ssh")
+
                                         ; Org
 (add-hook 'org-mode-hook
           '(lambda nil
