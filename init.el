@@ -10,15 +10,17 @@
 (setq inhibit-splash-screen t)
 
 (when window-system
-  (let* ((m+ "M+ 1m-9")
-         (source-code "Source Code Pro-9")
-         (fira-code "Fira Code-10")
-         (font fira-code))
+  (let* ((m+ "M+ 1mn Light-11")
+         (source-code "Source Code Pro-11")
+         (fira-code "Fira Code Light-11")
+         (courier-new "Courier New-10")
+         (monofur "monofur-12")
+         (font m+))
     (setq default-frame-alist
           `((fullscreen . nil)
-            (font . ,source-code)
             (width . 80)
-            (height . 48)))))
+            (height . 48)
+            (font . ,font)))))
 
 (add-to-list 'same-window-regexps "\*magit: .*\*")
 
