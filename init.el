@@ -38,8 +38,8 @@
 					; Packages
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")))
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+
 (package-initialize)
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
