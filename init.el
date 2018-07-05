@@ -47,12 +47,14 @@
 			 auto-complete-c-headers
 			 auto-complete-clang
 			 autopair
+                         cider
 			 cmake-ide
 			 cmake-mode
 			 company
 			 elisp-slime-nav
 			 flycheck
 			 flycheck-haskell
+                         flycheck-rtags
                          fsharp-mode
 			 haskell-mode
 			 magit
@@ -462,6 +464,9 @@ want to use in the modeline *in lieu of* the original.")
  '(eww-download-directory "~/downloads/")
  '(markdown-xhtml-header-content
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
+ '(package-selected-packages
+   (quote
+    (cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
