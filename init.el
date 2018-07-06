@@ -427,6 +427,8 @@
     ;; Major modes
     (lisp-interaction-mode . "λ")
     (scheme-mode . "λ")
+    (clojure-mode . "λ")
+    (cider-repl-mode . "λ")
     (hi-lock-mode . "")
     (python-mode . "Py")
     (emacs-lisp-mode . "ɛλ")
