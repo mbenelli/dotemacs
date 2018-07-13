@@ -307,8 +307,8 @@
   (setq rtags-autostart-diagnostics t)
   (rtags-diagnostics)
   (setq rtags-completions-enabled t)
-  (push 'company-rtags company-backends)
-  (global-company-mode)
+;;  (push 'company-rtags company-backends)
+;;  (global-company-mode)
   (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
   ;; use rtags flycheck mode -- clang warnings shown inline
   (require 'flycheck-rtags)
