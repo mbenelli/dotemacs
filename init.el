@@ -65,8 +65,7 @@
 			 projectile
 			 rtags
 			 slime
-			 markdown-mode
-			 yasnippet)))
+			 markdown-mode)))
   (when (or (null package-activated-list)
             (cl-set-difference package-activated-list needed-packages))
     (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
@@ -242,11 +241,6 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'ido)
 (setq projectile-mod-line nil)
-
-                                        ; yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-(yas-global-mode 1)
 
                                         ; autocomplete
 (require 'company)
@@ -470,7 +464,7 @@ want to use in the modeline *in lieu of* the original.")
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
  '(package-selected-packages
    (quote
-    (cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
+    (floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
