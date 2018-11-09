@@ -1,5 +1,7 @@
-;;; init.el ---  emacs configuration file.
+;;; Emacs.el --- Starting point in Emacs configuration.
+
 ;;; Commentary:
+;;;
 ;;; Starting point in Emacs configuration.
 
 ;;; Code:
@@ -11,11 +13,12 @@
 
 (when window-system
   (let* ((m+ "M+ 1mn Light-11")
-         (source-code "Source Code Pro-11")
+         (source-code "Source Code Pro-10")
          (fira-code "Fira Code Light-11")
          (courier-new "Courier New-10")
+         (courier-prime "Courier Prime Code-12")
          (monofur "monofur-12")
-         (font m+))
+         (font source-code))
     (setq default-frame-alist
           `((fullscreen . nil)
             (width . 80)
@@ -44,26 +47,19 @@
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
                          ag
-			 auto-complete-c-headers
-			 auto-complete-clang
 			 autopair
                          cider
-			 cmake-ide
 			 cmake-mode
-			 company
 			 elisp-slime-nav
 			 flycheck
 			 flycheck-haskell
-                         flycheck-rtags
                          fsharp-mode
 			 haskell-mode
 			 magit
 			 magit-gerrit
 			 paredit
 			 popup
-                         pretty-lambdada
 			 projectile
-			 rtags
 			 slime
 			 markdown-mode)))
   (when (or (null package-activated-list)
@@ -71,11 +67,6 @@
     (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
 	  needed-packages)))
 
-
-                                        ; Pretty lambda
-
-(require 'pretty-lambdada)
-(pretty-lambda-for-modes)
 
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
@@ -167,6 +158,11 @@
 
                                         ; Tramp
 (setq tramp-default-method "ssh")
+
+                                        ; Haskell
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
                                         ; Org
 (add-hook 'org-mode-hook
@@ -276,65 +272,6 @@
 (setq c-default-style "stroustrup"
       c-basic-offset 4
       indent-tabs-mode nil)
-
-                                        ; Rtags
-
-;; ensure that we use only rtags checking
-;; https://github.com/Andersbakken/rtags#optional-1
-(defun setup-flycheck-rtags ()
-  (interactive)
-  (flycheck-select-checker 'rtags)
-  ;; RTags creates more accurate overlays.
-  (setq-local flycheck-highlighting-mode nil)
-  (setq-local flycheck-check-syntax-automatically nil))
-
-;; only run this if rtags is installed
-(when (require 'rtags nil :noerror)
-  ;; make sure you have company-mode installed
-  (require 'company)
-  (define-key c-mode-base-map (kbd "M-.")
-    (function rtags-find-symbol-at-point))
-  (define-key c-mode-base-map (kbd "M-,")
-    (function rtags-find-references-at-point))
-  ;; disable prelude's use of C-c r, as this is the rtags keyboard prefix
-  ;;(define-key prelude-mode-map (kbd "C-c r") nil)
-  ;; install standard rtags keybindings. Do M-. on the symbol below to
-  ;; jump to definition and see the keybindings.
-  (rtags-enable-standard-keybindings)
-  ;; comment this out if you don't have or don't use helm
-  ;;(setq rtags-use-helm t)
-  ;; company completion setup
-  (setq rtags-autostart-diagnostics t)
-  (rtags-diagnostics)
-  (setq rtags-completions-enabled t)
-;;  (push 'company-rtags company-backends)
-;;  (global-company-mode)
-  (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
-  ;; use rtags flycheck mode -- clang warnings shown inline
-  (require 'flycheck-rtags)
-  ;; c-mode-common-hook is also called by c++-mode
-    (add-hook 'c-mode-common-hook #'setup-flycheck-rtags))
-
-;; (require 'rtags)
-;; (require 'popup)
-;; (require 'rtags-ac)
-;; (require 'company-rtags)
-
-;; (rtags-enable-standard-keybindings c-mode-base-map)
-;; (setq rtags-completions-enabled t)
-
-;; (define-key c-mode-base-map (kbd "M-.") 'rtags-find-symbol-at-point)
-;; (define-key c-mode-base-map (kbd "M-,") 'rtags-find-references-at-point)
-;; (define-key c-mode-base-map (kbd "M-*") 'rtags-location-stack-back)
-
-
-                                        ; cmake-ide
-;; (cmake-ide-setup)
-;; (setq cmake-ide-flags-C++ (append '("-std=c++1y")
-;;                                   (mapcar (lambda (path) (concat "-I" path))
-;;                                           (c++-include-paths))))
-;; (setq cmake-ide-flags-c '("-I/usr/include"))
-
                                         ; C++
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -342,37 +279,6 @@
               (setq compilation-scroll-output 'first-error)
               (setq show-trailing-whitespace t)
               (c-set-offset 'innamespace 0))))
-
-                                        ; autocomplete headers
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (require 'auto-complete-c-headers)
-            (setq ac-sources
-                  '(ac-source-c-headers ac-source-clang ac-source-yasnippet))
-            (setq company-backends
-                  '(company-rtags company-clang company-keywords
-                                  company-yasnippet company-files))
-            (add-to-list 'ac-sources 'ac-source-c-headers)
-            (auto-complete-mode 0)
-            (company-mode 1)
-            (global-set-key [C-return] 'company-complete-common)))
-
-(defun toggle-ac ()
-  "Toggle between auto-complete and company."
-  (interactive)
-  (if (bound-and-true-p auto-complete-mode)
-      (progn
-        (auto-complete-mode 0)
-        (company-mode 1)
-        (global-set-key [C-return] 'company-complete-common))
-    (progn
-      (company-mode 0)
-      (auto-complete-mode 1)
-      (global-set-key [C-return] 'auto-complete))))
-
-                                        ; flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
                                         ; misc
 (autoload 'ace-jump-mode "ace-jump-mode")
