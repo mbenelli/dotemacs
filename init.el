@@ -43,18 +43,12 @@
 (let ((needed-packages '(ace-jump-mode
                          ag
 			 autopair
-                         cider
 			 cmake-mode
 			 elisp-slime-nav
 			 flycheck
-			 flycheck-haskell
-                         fsharp-mode
-			 haskell-mode
                          lab-themes
 			 magit
-			 magit-gerrit
 			 paredit
-			 popup
 			 projectile
 			 slime
 			 markdown-mode)))
@@ -158,11 +152,6 @@
 
                                         ; Tramp
 (setq tramp-default-method "ssh")
-
-                                        ; Haskell
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
                                         ; Org
 (add-hook 'org-mode-hook
@@ -292,8 +281,6 @@
 (add-hook 'lisp-mode-hook                        #'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
-(add-hook 'clojure-mode                          #'enable-paredit-mode)
-(add-hook 'cider-repl-mode                       #'enable-paredit-mode)
 
                                         ; QML
 
