@@ -11,26 +11,21 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(when window-system
-  (let* ((m+ "M+ 1mn Light-11")
-         (source-code "Source Code Pro-10")
-         (fira-code "Fira Code Light-11")
-         (courier-new "Courier New-10")
-         (courier-prime "Courier Prime Code-12")
-         (monofur "monofur-12")
-         (font source-code))
+(let* ((monospaced "Source Code Pro-10")
+         (sans-serif "Cooper Hewitt-13:weight=medium")
+         (serif "Charter")
+         (font monospaced))
     (setq default-frame-alist
           `((fullscreen . nil)
             (width . 80)
             (height . 48)
-            (font . ,font)))))
+            (font . ,font))))
 
 (add-to-list 'same-window-regexps "\*magit: .*\*")
 
-(if (display-graphic-p)
-    (tool-bar-mode 0))
-
+(tool-bar-mode 0)
 (menu-bar-mode 0)
+
 (if (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
 (column-number-mode 1)
@@ -55,6 +50,7 @@
 			 flycheck-haskell
                          fsharp-mode
 			 haskell-mode
+                         lab-themes
 			 magit
 			 magit-gerrit
 			 paredit
@@ -66,6 +62,10 @@
             (cl-set-difference package-activated-list needed-packages))
     (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
 	  needed-packages)))
+
+
+                                        ; Theme
+(load-theme 'lab-dark t)
 
 
                                         ; Paths
@@ -337,9 +337,7 @@
 
 When you add a new element to the alist, keep in mind that you
 must pass the correct minor/major mode symbol and a string you
-want to use in the modeline *in lieu of* the original.")
-
-(defun clean-mode-line ()
+want to use in the modeline *in lieu of* the original.")(defun clean-mode-line ()
   "Clean-up the mode-line according to rules defined in `mode-line-cleaner-alist'."
   (interactive)
   (dolist (cleaner mode-line-cleaner-alist)
@@ -364,23 +362,27 @@ want to use in the modeline *in lieu of* the original.")
  ;; If there is more than one, they won't work right.
  '(battery-mode-line-format "[%b%p%%]")
  '(compilation-scroll-output (quote first-error))
+ '(custom-safe-themes
+   (quote
+    ("a2afb83e8da1d92f83543967fb75a490674a755440d0ce405cf9d9ae008d0018" default)))
  '(display-time-24hr-format t)
  '(eww-download-directory "~/downloads/")
  '(markdown-xhtml-header-content
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
  '(package-selected-packages
    (quote
-    (floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
+    (ggtags ergoemacs-mode floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
  '(send-mail-function (quote sendmail-send-it)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(rtags-skippedline ((t nil))))
+
 
 (provide 'init)
 ;;; init.el ends here
 
 
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
