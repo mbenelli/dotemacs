@@ -46,6 +46,7 @@
 			 cmake-mode
 			 elisp-slime-nav
 			 flycheck
+                         helm
                          lab-themes
 			 magit
 			 paredit
@@ -60,6 +61,13 @@
 
                                         ; Theme
 (load-theme 'lab-dark t)
+
+                                        ; Helm
+(require 'helm-config)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(helm-mode 1)
 
 
                                         ; Paths
@@ -148,7 +156,7 @@
 (auto-save-mode 0)
 
                                         ; Ido
-(ido-mode 1)
+;;;(ido-mode 1)
 
                                         ; Tramp
 (setq tramp-default-method "ssh")
