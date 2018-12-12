@@ -67,6 +67,15 @@
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
+(setq helm-split-window-in-side-p           t
+      helm-move-to-line-cycle-in-source     t
+      helf-ff-search-library-in-sexp        t
+      helm-scroll-amount                    8
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line        t)
+(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 20)
+(helm-autoresize-mode 1)
 (helm-mode 1)
 
 
