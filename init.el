@@ -44,24 +44,36 @@
 (let ((needed-packages '(ace-jump-mode
                          ag
 			 autopair
+                         clang-format
 			 cmake-mode
+;;                         company-lsp
+                         cquery
+;;                         dap-mode
+                         doom-themes
+                         eglot
 			 elisp-slime-nav
 			 flycheck
+                         go-mode
                          helm
-                         lab-themes
+                         helm-lsp
+                         lsp-mode
+;;                         lsp-treemacs
+;;                         lsp-ui
 			 magit
 			 paredit
 			 projectile
 			 slime
-			 markdown-mode)))
-  (when (or (null package-activated-list)
-            (cl-set-difference package-activated-list needed-packages))
+			 markdown-mode
+                         yasnippet)))
+  (when
+      (or (null package-activated-list)
+          (cl-set-difference package-activated-list needed-packages))
     (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
 	  needed-packages)))
 
 
                                         ; Theme
-(load-theme 'lab-dark t)
+(load-theme 'doom-one-light t)
 
                                         ; Helm
 (require 'helm-config)
