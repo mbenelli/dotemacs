@@ -88,7 +88,7 @@
       helm-echo-input-in-header-line        t)
 (setq helm-autoresize-max-height 0)
 (setq helm-autoresize-min-height 20)
-(helm-autoresize-mode 1)
+;;(helm-autoresize-mode 1)
 (helm-mode 1)
 
 
@@ -254,36 +254,36 @@
 
                                         ; Projectile
 (projectile-global-mode)
-(setq projectile-completion-system 'ido)
+(setq projectile-completion-system 'helm)
 (setq projectile-mod-line nil)
+(add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-                                        ; autocomplete
-(require 'company)
-(setq company-backends (delete 'company-semantic company-backends))
-(setq company-idle-delay 0)
 
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-quick-help-delay 0)
-(define-key ac-complete-mode-map "\t" 'ac-complete)
-(define-key ac-complete-mode-map [return] nil)
-(define-key ac-complete-mode-map "\r" nil)
-(define-key ac-mode-map [C-return] 'auto-complete)
-(setq ac-candidate-limit 100)
+                                        ; Cquery
+(require 'cquery)
+(require 'lsp-mode)
+(setq cquery-executable "~/bin/cquery")
+(setq lsp-enable-snippet nil)
 
-(defun auto-complete-mode-maybe ()
-  "Auto complete everywhere."
-  (unless (minibufferp (current-buffer))
-    (auto-complete-mode 1)))
 
-(require 'auto-complete-clang)
-;;(require 'c++-include-files)
+;; (defun cquery//enable ()
+;;   (interactive)
+;;   (condition-case nil
+;;       (lsp)
+;;     (user-error nil)))
+
+(require 'lsp-mode)
+;; (require 'lsp-clients)
+(add-hook 'c++-mode-hook #'lsp)
+;; (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
+
 
                                         ; Elisp
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (auto-complete-mode 1)))
+            ;;(auto-complete-mode 1)
+            ))
 
                                         ; C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -297,7 +297,8 @@
             (when (derived-mode-p 'c-mode 'c++-mode)
               (setq compilation-scroll-output 'first-error)
               (setq show-trailing-whitespace t)
-              (c-set-offset 'innamespace 0))))
+              (c-set-offset 'innamespace 0)
+              (lsp))))
 
                                         ; misc
 (autoload 'ace-jump-mode "ace-jump-mode")
@@ -388,7 +389,7 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
  '(package-selected-packages
    (quote
-    (ggtags ergoemacs-mode floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
+    (clang-format ggtags ergoemacs-mode floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 
 
