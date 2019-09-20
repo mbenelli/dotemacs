@@ -12,14 +12,15 @@
 (setq inhibit-splash-screen t)
 
 (let* ((monospaced "Source Code Pro-10")
-         (sans-serif "Cooper Hewitt-13:weight=medium")
-         (serif "Charter")
-         (font monospaced))
-    (setq default-frame-alist
-          `((fullscreen . nil)
-            (width . 80)
-            (height . 48)
-            (font . ,font))))
+       (sans-serif "M+ 1c-11")
+       (serif "Charter")
+       (font monospaced))
+  (setq default-frame-alist
+        `((fullscreen . nil)
+          (width . 80)
+          (height . 48)
+          (line-spacing . 10)
+          (font . ,font))))
 
 (add-to-list 'same-window-regexps "\*magit: .*\*")
 
