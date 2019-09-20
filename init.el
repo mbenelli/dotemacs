@@ -6,6 +6,12 @@
 
 ;;; Code:
 
+                                        ; Dvorak tweak
+
+;;(define-key key-translation-map [?\C-x] [?\C-u])
+;;(define-key key-translation-map [?\C-u] [?\C-x])
+
+
 (require 'cl-lib)  ; cl-set-difference
 
                                         ; Widgets and themes
@@ -90,6 +96,12 @@
 (setq helm-autoresize-min-height 20)
 ;;(helm-autoresize-mode 1)
 (helm-mode 1)
+
+
+                                        ; Dvorak tweaks
+;;(global-set-key (kbd "C-x h") 'helm-M-x)
+;;(global-set-key (kbd "C-x C-h") 'helm-M-x)
+
 
 
                                         ; Paths
