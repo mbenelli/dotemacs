@@ -17,7 +17,7 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Source Code Pro-10")
+(let* ((monospaced "Source Code Pro-14")
        (sans-serif "M+ 1c-11")
        (serif "Charter")
        (font monospaced))
@@ -25,7 +25,7 @@
         `((fullscreen . nil)
           (width . 80)
           (height . 48)
-          (line-spacing . 10)
+          (line-spacing . 5)
           (font . ,font))))
 
 (add-to-list 'same-window-regexps "\*magit: .*\*")
