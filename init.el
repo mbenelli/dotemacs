@@ -274,21 +274,21 @@
 
                                         ; Cquery
 (require 'cquery)
-(require 'lsp-mode)
 (setq cquery-executable "~/bin/cquery")
 (setq lsp-enable-snippet nil)
 
 
-;; (defun cquery//enable ()
-;;   (interactive)
-;;   (condition-case nil
-;;       (lsp)
-;;     (user-error nil)))
+(defun cquery//enable ()
+  (interactive)
+  (condition-case nil
+      (lsp)
+    (user-error nil)))
 
-(require 'lsp-mode)
+;; (require 'lsp-mode)
 ;; (require 'lsp-clients)
-(add-hook 'c++-mode-hook #'lsp)
 ;; (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
+
+;;(add-to-list 'eglot-server-programs '((c++ mode c-mode) . (eglot-cquery "~/bin/cquery")))
 
 
                                         ; Elisp
@@ -310,7 +310,10 @@
               (setq compilation-scroll-output 'first-error)
               (setq show-trailing-whitespace t)
               (c-set-offset 'innamespace 0)
-              (lsp))))
+;;              (eglot-ensure)
+              (lsp)
+              (local-set-key (kbd "M-.") 'lsp-find-definition)
+              )))
 
                                         ; misc
 (autoload 'ace-jump-mode "ace-jump-mode")
