@@ -8,8 +8,8 @@
 
                                         ; Dvorak tweak
 
-;;(define-key key-translation-map [?\C-x] [?\C-u])
-;;(define-key key-translation-map [?\C-u] [?\C-x])
+(define-key key-translation-map [?\C-x] [?\C-u])
+(define-key key-translation-map [?\C-u] [?\C-x])
 
 
 (require 'cl-lib)  ; cl-set-difference
@@ -99,8 +99,8 @@
 
 
                                         ; Dvorak tweaks
-;;(global-set-key (kbd "C-x h") 'helm-M-x)
-;;(global-set-key (kbd "C-x C-h") 'helm-M-x)
+(global-set-key (kbd "C-x h") 'helm-M-x)
+(global-set-key (kbd "C-x C-h") 'helm-M-x)
 
 
 
