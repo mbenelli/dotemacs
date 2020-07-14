@@ -88,6 +88,7 @@
 			 projectile
 			 slime
 			 markdown-mode
+                         use-package
                          yasnippet)))
   (when
       (or (null package-activated-list)
@@ -404,7 +405,7 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
  '(package-selected-packages
    (quote
-    (clang-format ggtags ergoemacs-mode floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
+    (use-package clang-format ggtags ergoemacs-mode floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 
 
