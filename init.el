@@ -35,6 +35,24 @@
 
 (if (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
+
+                                        ; Environment
+(setenv "PAGER" "cat")
+
+                                        ; Global parameters
+(setq make-backup-files nil)
+(setq default-directory "~/")
+(setq-default indent-tabs-mode nil)
+(setq ring-bell-function 'ignore)
+
+(setq buffer-file-coding-system 'utf-8-unix)
+(prefer-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+(set-language-environment "utf-8")
+
+(global-font-lock-mode -1)
+
+(auto-save-mode 0)
 (column-number-mode 1)
 
 (display-time-mode)
@@ -170,24 +188,6 @@
         (kmacro-exec-ring-item
          (quote ([24 56 return 35 120 50 54 54 69 return] 0 "%d")) arg)))
 
-
-                                        ; Environment
-(setenv "PAGER" "cat")
-
-                                        ; Global parameters
-(setq make-backup-files nil)
-(setq default-directory "~/")
-(setq-default indent-tabs-mode nil)
-(setq ring-bell-function 'ignore)
-
-(setq buffer-file-coding-system 'utf-8-unix)
-(prefer-coding-system 'utf-8-unix)
-(set-default-coding-systems 'utf-8-unix)
-(set-language-environment "utf-8")
-
-(global-font-lock-mode -1)
-
-(auto-save-mode 0)
 
                                         ; Ido
 ;;;(ido-mode 1)
