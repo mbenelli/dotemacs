@@ -61,7 +61,7 @@
 					; Packages
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa". "https://melpa.org/packages/")))
 
 (package-initialize)
 (unless package-activated-list (package-refresh-contents))
