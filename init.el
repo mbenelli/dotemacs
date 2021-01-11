@@ -143,51 +143,50 @@
       (lambda (&optional arg)
         "Keyboard macro."
         (interactive "p")
-        (kmacro-exec-ring-item
-         (quote ([24 56 return 35 120 50 48 65 67 return] 0 "%d")) arg)))
+        (insert (char-from-name "EURO SIGN"))))
+
+(fset 'epsilon
+      (lambda (&optional arg)
+        "Keyboard macro."
+        (interactive "p")
+        (insert (char-from-name "GREEK SMALL LETTER EPSILON"))))
 
 (fset 'section
       (lambda (&optional arg)
         "Keyboard macro."
         (interactive "p")
-        (kmacro-exec-ring-item
-         (quote ([24 56 return 35 120 48 48 65 55 return] 0 "%d")) arg)))
+        (insert (char-from-name "SECTION SIGN"))))
 
 
 (fset 'diminished
       (lambda (&optional arg)
         "Keyboard macro."
         (interactive "p")
-        (kmacro-exec-ring-item
-         (quote ([24 56 return 35 120 50 50 49 56 return] 0 "%d")) arg)))
+        (insert (char-from-name "DEGREE SIGN"))))
 
 (fset 'half-diminished
       (lambda (&optional arg)
         "Keyboard macro."
         (interactive "p")
-        (kmacro-exec-ring-item
-         (quote ([24 56 return 35 120 50 51 48 48 return] 0 "%d")) arg)))
+        (insert (char-from-name "EMPTY SET"))))
 
 (fset 'flat
       (lambda (&optional arg)
         "Keyboard macro."
         (interactive "p")
-        (kmacro-exec-ring-item
-         (quote ([24 56 return 35 120 50 54 54 68 return] 0 "%d")) arg)))
+        (insert (char-from-name "MUSIC FLAT SIGN"))))
 
 (fset 'sharp
       (lambda (&optional arg)
         "Keyboard macro."
         (interactive "p")
-        (kmacro-exec-ring-item
-         (quote ([24 56 return 35 120 50 54 54 70 return] 0 "%d")) arg)))
+        (insert (char-from-name "MUSIC SHARP SIGN"))))
 
 (fset 'natural
       (lambda (&optional arg)
         "Keyboard macro."
         (interactive "p")
-        (kmacro-exec-ring-item
-         (quote ([24 56 return 35 120 50 54 54 69 return] 0 "%d")) arg)))
+        (insert (char-from-name "MUSIC NATURAL SIGN"))))
 
 
                                         ; Ido
