@@ -17,14 +17,14 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Source Code Pro-14")
+(let* ((monospaced "Source Code Pro-12")
        (sans-serif "M+ 1c-11")
        (serif "Charter")
        (font monospaced))
   (setq default-frame-alist
         `((fullscreen . nil)
           (width . 80)
-          (height . 48)
+          (height . 40)
           (line-spacing . 5)
           (font . ,font))))
 
@@ -67,29 +67,16 @@
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
                          ag
+                         almost-mono-themes
 			 autopair
-                         clang-format
-			 cmake-mode
-;;                         company-lsp
-                         cquery
-;;                         dap-mode
-                         doom-themes
-                         eglot
-			 elisp-slime-nav
-			 flycheck
                          go-mode
                          helm
-                         helm-lsp
-                         lsp-mode
-;;                         lsp-treemacs
-;;                         lsp-ui
 			 magit
 			 paredit
-			 projectile
 			 slime
+                         solarized-theme
 			 markdown-mode
-                         use-package
-                         yasnippet)))
+                         )))
   (when
       (or (null package-activated-list)
           (cl-set-difference package-activated-list needed-packages))
@@ -98,7 +85,7 @@
 
 
                                         ; Theme
-(load-theme 'doom-one-light t)
+(load-theme 'almost-mono-cream t)
 
                                         ; Helm
 (require 'helm-config)
@@ -271,26 +258,6 @@
 (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-
-                                        ; Cquery
-(require 'cquery)
-(setq cquery-executable "~/bin/cquery")
-(setq lsp-enable-snippet nil)
-
-
-(defun cquery//enable ()
-  (interactive)
-  (condition-case nil
-      (lsp)
-    (user-error nil)))
-
-;; (require 'lsp-mode)
-;; (require 'lsp-clients)
-;; (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
-
-;;(add-to-list 'eglot-server-programs '((c++ mode c-mode) . (eglot-cquery "~/bin/cquery")))
-
-
                                         ; Elisp
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
@@ -303,17 +270,6 @@
 (setq c-default-style "stroustrup"
       c-basic-offset 4
       indent-tabs-mode nil)
-                                        ; C++
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode)
-              (setq compilation-scroll-output 'first-error)
-              (setq show-trailing-whitespace t)
-              (c-set-offset 'innamespace 0)
-;;              (eglot-ensure)
-              (lsp)
-              (local-set-key (kbd "M-.") 'lsp-find-definition)
-              )))
 
                                         ; misc
 (autoload 'ace-jump-mode "ace-jump-mode")
@@ -397,14 +353,14 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
  '(compilation-scroll-output (quote first-error))
  '(custom-safe-themes
    (quote
-    ("a2afb83e8da1d92f83543967fb75a490674a755440d0ce405cf9d9ae008d0018" default)))
+    ("ffba0482d3548c9494e84c1324d527f73ea4e43fff8dfd0e48faa8fc6d5c2bc7" "d0fd069415ef23ccc21ccb0e54d93bdbb996a6cce48ffce7f810826bb243502c" "8f5b54bf6a36fe1c138219960dd324aad8ab1f62f543bed73ef5ad60956e36ae" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "1d5e33500bc9548f800f9e248b57d1b2a9ecde79cb40c0b1398dec51ee820daf" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "833ddce3314a4e28411edf3c6efde468f6f2616fc31e17a62587d6a9255f4633" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "a2afb83e8da1d92f83543967fb75a490674a755440d0ce405cf9d9ae008d0018" default)))
  '(display-time-24hr-format t)
  '(eww-download-directory "~/downloads/")
  '(markdown-xhtml-header-content
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
  '(package-selected-packages
    (quote
-    (use-package clang-format ggtags ergoemacs-mode floobits cider yasnippet tuareg spinner slime queue projectile pretty-lambdada paredit markdown-mode magit-gerrit fsharp-mode flycheck-rtags flycheck-haskell elisp-slime-nav cmake-mode cmake-ide autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
+    (almost-mono-themes yasnippet slime projectile paredit markdown-mode magit-popup magit-gerrit lab-themes helm fsharp-mode flycheck-rtags flycheck-haskell floobits elisp-slime-nav cmake-mode cmake-ide cider autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
  '(send-mail-function (quote sendmail-send-it)))
 
 
