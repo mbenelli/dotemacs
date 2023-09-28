@@ -17,7 +17,7 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Source Code Pro-12")
+(let* ((monospaced "Roboto Mono-13")
        (sans-serif "M+ 1c-11")
        (serif "Charter")
        (font monospaced))
@@ -56,7 +56,7 @@
 (column-number-mode 1)
 
 (display-time-mode)
-(global-linum-mode -1)
+;;(global-linum-mode -1)
 
 					; Packages
 (require 'package)
@@ -66,16 +66,18 @@
 (package-initialize)
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
-                         ag
-                         almost-mono-themes
-			 autopair
+                         ;ag
+                         ;almost-mono-themes
+                         ;autopair
+                         elpy
                          go-mode
                          helm
 			 magit
 			 paredit
 			 slime
-                         solarized-theme
-			 markdown-mode
+                         ;solarized-theme
+                         markdown-mode
+                         use-package
                          )))
   (when
       (or (null package-activated-list)
@@ -83,12 +85,14 @@
     (mapc (lambda (p) (or (package-installed-p p) (package-install p)))
 	  needed-packages)))
 
+(require 'use-package)
 
                                         ; Theme
-(load-theme 'almost-mono-cream t)
+;(load-theme 'almost-mono-cream t)
 
                                         ; Helm
-(require 'helm-config)
+(require 'helm)
+;(require 'helm-config)
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
@@ -103,7 +107,6 @@
 ;;(helm-autoresize-mode 1)
 (helm-mode 1)
 
-
                                         ; Dvorak tweaks
 (global-set-key (kbd "C-x h") 'helm-M-x)
 (global-set-key (kbd "C-x C-h") 'helm-M-x)
@@ -112,8 +115,8 @@
 
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
-(setq Info-directory-list
-      (cons "~/opt/gambit/current/info" Info-directory-list))
+;; (setq info-directory-list
+;;       (cons "~/opt/gambit/current/info" info-directory-list))
 
                                         ; Keybindings
 
@@ -237,9 +240,9 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
                                         ; Autopair
-(require 'autopair)
-(autopair-global-mode 1)
-(setq autopair-autowrap t)
+;; (require 'autopair)
+;; (autopair-global-mode 1)
+;; (setq autopair-autowrap t)
 
                                         ; Irc
 (require 'erc)
@@ -252,11 +255,11 @@
 (setq scheme-program-name "gsi -:d-")
 
                                         ; Projectile
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(setq projectile-mod-line nil)
-(add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;; (projectile-global-mode)
+;; (setq projectile-completion-system 'helm)
+;; (setq projectile-mod-line nil)
+;; (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
+;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
                                         ; Elisp
 (add-hook 'emacs-lisp-mode-hook
@@ -272,17 +275,17 @@
       indent-tabs-mode nil)
 
                                         ; misc
-(autoload 'ace-jump-mode "ace-jump-mode")
+;; (autoload 'ace-jump-mode "ace-jump-mode")
 
                                         ; Paredit
-(autoload 'enable-paredit-mode "paredit"
-  "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook                  #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook                        #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook                        #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
+;; (autoload 'enable-paredit-mode "paredit"
+;;   "Turn on pseudo-structural editing of Lisp code." t)
+;; (add-hook 'emacs-lisp-mode-hook                  #'enable-paredit-mode)
+;; (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+;; (add-hook 'ielm-mode-hook                        #'enable-paredit-mode)
+;; (add-hook 'lisp-mode-hook                        #'enable-paredit-mode)
+;; (add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
+;; (add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
 
                                         ; QML
 
@@ -350,18 +353,16 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(battery-mode-line-format "[%b%p%%]")
- '(compilation-scroll-output (quote first-error))
+ '(compilation-scroll-output 'first-error)
  '(custom-safe-themes
-   (quote
-    ("ffba0482d3548c9494e84c1324d527f73ea4e43fff8dfd0e48faa8fc6d5c2bc7" "d0fd069415ef23ccc21ccb0e54d93bdbb996a6cce48ffce7f810826bb243502c" "8f5b54bf6a36fe1c138219960dd324aad8ab1f62f543bed73ef5ad60956e36ae" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "1d5e33500bc9548f800f9e248b57d1b2a9ecde79cb40c0b1398dec51ee820daf" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "833ddce3314a4e28411edf3c6efde468f6f2616fc31e17a62587d6a9255f4633" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "a2afb83e8da1d92f83543967fb75a490674a755440d0ce405cf9d9ae008d0018" default)))
+   '("5ec088e25ddfcfe37b6ae7712c9cb37fd283ea5df7ac609d007cafa27dab6c64" "d43860349c9f7a5b96a090ecf5f698ff23a8eb49cd1e5c8a83bb2068f24ea563" "0f220ea77c6355c411508e71225680ecb3e308b4858ef6c8326089d9ea94b86f" "ffba0482d3548c9494e84c1324d527f73ea4e43fff8dfd0e48faa8fc6d5c2bc7" "d0fd069415ef23ccc21ccb0e54d93bdbb996a6cce48ffce7f810826bb243502c" "8f5b54bf6a36fe1c138219960dd324aad8ab1f62f543bed73ef5ad60956e36ae" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "1d5e33500bc9548f800f9e248b57d1b2a9ecde79cb40c0b1398dec51ee820daf" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "833ddce3314a4e28411edf3c6efde468f6f2616fc31e17a62587d6a9255f4633" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "a2afb83e8da1d92f83543967fb75a490674a755440d0ce405cf9d9ae008d0018" default))
  '(display-time-24hr-format t)
  '(eww-download-directory "~/downloads/")
  '(markdown-xhtml-header-content
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
  '(package-selected-packages
-   (quote
-    (almost-mono-themes yasnippet slime projectile paredit markdown-mode magit-popup magit-gerrit lab-themes helm fsharp-mode flycheck-rtags flycheck-haskell floobits elisp-slime-nav cmake-mode cmake-ide cider autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode)))
- '(send-mail-function (quote sendmail-send-it)))
+   '(almost-mono-themes yasnippet slime projectile paredit markdown-mode magit-popup magit-gerrit lab-themes helm fsharp-mode flycheck-rtags flycheck-haskell floobits elisp-slime-nav cmake-mode cmake-ide cider autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode))
+ '(send-mail-function 'sendmail-send-it))
 
 
 (provide 'init)
@@ -374,4 +375,4 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "White" :foreground "Black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "nil" :family "Menlo")))))
