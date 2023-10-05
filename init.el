@@ -17,7 +17,7 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Roboto Mono-13")
+(let* ((monospaced "Cascadia Code-10")
        (sans-serif "M+ 1c-11")
        (serif "Charter")
        (font monospaced))
@@ -66,12 +66,14 @@
 (package-initialize)
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
-                         ;ag
+                         ag
                          ;almost-mono-themes
                          ;autopair
                          elpy
                          go-mode
                          helm
+                         julia-mode
+                         julia-repl
 			 magit
 			 paredit
 			 slime
@@ -115,8 +117,6 @@
 
                                         ; Paths
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
-;; (setq info-directory-list
-;;       (cons "~/opt/gambit/current/info" info-directory-list))
 
                                         ; Keybindings
 
@@ -247,13 +247,6 @@
                                         ; Irc
 (require 'erc)
 
-                                        ; Gambit Scheme
-(autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
-(autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
-(add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode))
-(add-hook 'scheme-mode-hook (function gambit-mode))
-(setq scheme-program-name "gsi -:d-")
-
                                         ; Projectile
 ;; (projectile-global-mode)
 ;; (setq projectile-completion-system 'helm)
@@ -267,12 +260,29 @@
             ;;(auto-complete-mode 1)
             ))
 
+                                        ; Slime
+(setq inferior-lisp-program "sbcl")
+
+                                        ; Gambit Scheme
+(autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
+(autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
+(add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode))
+(add-hook 'scheme-mode-hook (function gambit-mode))
+(setq scheme-program-name "gsi -:d-")
+
+
                                         ; C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (setq c-default-style "stroustrup"
       c-basic-offset 4
       indent-tabs-mode nil)
+
+                                        ; Golang
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+                                        ; Julia
+(add-hook 'julia-mode-hook 'julia-repl-mode)
 
                                         ; misc
 ;; (autoload 'ace-jump-mode "ace-jump-mode")
