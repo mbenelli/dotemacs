@@ -61,6 +61,7 @@
 					; Packages
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("gnu-devel" . "https://elpa.gnu.org/devel/")
                          ("melpa". "https://melpa.org/packages/")))
 
 (package-initialize)
