@@ -17,15 +17,15 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Cascadia Code-10")
-       (sans-serif "M+ 1c-11")
-       (serif "Charter")
+(let* ((monospaced "Noto Sans Mono-13")
+       (sans-serif "Noto Sans-13")
+       (serif "Noto Serif")
        (font monospaced))
   (setq default-frame-alist
         `((fullscreen . nil)
           (width . 80)
           (height . 40)
-          (line-spacing . 5)
+          (line-spacing . 3)
           (font . ,font))))
 
 (add-to-list 'same-window-regexps "\*magit: .*\*")
@@ -66,8 +66,6 @@
 (package-initialize)
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
-                         ag
-                         ;almost-mono-themes
                          ;autopair
                          elpy
                          go-mode
@@ -77,7 +75,6 @@
 			 magit
 			 paredit
 			 slime
-                         ;solarized-theme
                          markdown-mode
                          use-package
                          )))
@@ -88,9 +85,6 @@
 	  needed-packages)))
 
 (require 'use-package)
-
-                                        ; Theme
-;(load-theme 'almost-mono-cream t)
 
                                         ; Helm
 (require 'helm)
@@ -125,8 +119,27 @@
 (global-set-key (kbd "C-c s") 'eshell)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c h") 'help-map)
-(global-set-key (kbd "C-c m") 'mu4e)
+(global-set-key (kbd "C-c n") 'gnus)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+
+                                        ; Gnus
+
+;;(setq gnus-select-method '(nntp "news.gmane.org"))
+(setq gnus-select-method
+      '(nnimap "imap.fastmail.com"
+               (nnimap-expunge t)
+               (nnimap-stream ssl)))
+
+                                        ; SMTP
+(setq user-full-name "Marco Benelli"
+      user-mail-address "mbenelli@fastmail.com")
+
+(setq message-send-mail-function 'smtpmail-send-it)
+
+(setq smtpmail-smtp-server "smtp.fastmail.com"
+      smtpmail-smtp-service 465
+      smtpmail-stream-type 'ssl
+      smtpmail-smtp-user "mbenelli@fastmail.com")
 
                                         ; Special characters
 (fset 'euro
@@ -178,10 +191,6 @@
         (interactive "p")
         (insert (char-from-name "MUSIC NATURAL SIGN"))))
 
-
-                                        ; Ido
-;;;(ido-mode 1)
-
                                         ; Tramp
 (setq tramp-default-method "ssh")
 
@@ -189,6 +198,7 @@
 (add-hook 'org-mode-hook
           '(lambda nil
              (visual-line-mode)
+             (turn-on-font-lock)
              (disable-show-trailing-whitespace)))
 
                                         ; Markdown
@@ -288,14 +298,15 @@
 ;; (autoload 'ace-jump-mode "ace-jump-mode")
 
                                         ; Paredit
-;; (autoload 'enable-paredit-mode "paredit"
-;;   "Turn on pseudo-structural editing of Lisp code." t)
-;; (add-hook 'emacs-lisp-mode-hook                  #'enable-paredit-mode)
-;; (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-;; (add-hook 'ielm-mode-hook                        #'enable-paredit-mode)
-;; (add-hook 'lisp-mode-hook                        #'enable-paredit-mode)
-;; (add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
-;; (add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
+(autoload 'enable-paredit-mode "paredit"
+  "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook                  #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook                        #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook                        #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
+(add-hook 'slime-mode-hook                       #'enable-paredit-mode)
 
                                         ; QML
 
@@ -305,10 +316,6 @@
 
                                         ; Javascript
 (setq js-indent-level 4)
-
-                                        ; Gnus
-
-(setq gnus-select-method '(nntp "news.gmane.org"))
 
                                         ; Mode line cleaner
 (defvar mode-line-cleaner-alist
@@ -364,25 +371,13 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
  ;; If there is more than one, they won't work right.
  '(battery-mode-line-format "[%b%p%%]")
  '(compilation-scroll-output 'first-error)
- '(custom-safe-themes
-   '("5ec088e25ddfcfe37b6ae7712c9cb37fd283ea5df7ac609d007cafa27dab6c64" "d43860349c9f7a5b96a090ecf5f698ff23a8eb49cd1e5c8a83bb2068f24ea563" "0f220ea77c6355c411508e71225680ecb3e308b4858ef6c8326089d9ea94b86f" "ffba0482d3548c9494e84c1324d527f73ea4e43fff8dfd0e48faa8fc6d5c2bc7" "d0fd069415ef23ccc21ccb0e54d93bdbb996a6cce48ffce7f810826bb243502c" "8f5b54bf6a36fe1c138219960dd324aad8ab1f62f543bed73ef5ad60956e36ae" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "1d5e33500bc9548f800f9e248b57d1b2a9ecde79cb40c0b1398dec51ee820daf" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "833ddce3314a4e28411edf3c6efde468f6f2616fc31e17a62587d6a9255f4633" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "a2afb83e8da1d92f83543967fb75a490674a755440d0ce405cf9d9ae008d0018" default))
  '(display-time-24hr-format t)
  '(eww-download-directory "~/downloads/")
  '(markdown-xhtml-header-content
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
- '(package-selected-packages
-   '(almost-mono-themes yasnippet slime projectile paredit markdown-mode magit-popup magit-gerrit lab-themes helm fsharp-mode flycheck-rtags flycheck-haskell floobits elisp-slime-nav cmake-mode cmake-ide cider autopair auto-complete-clang auto-complete-c-headers ag ace-jump-mode))
  '(send-mail-function 'sendmail-send-it))
 
 
 (provide 'init)
 ;;; init.el ends here
 
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "White" :foreground "Black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "nil" :family "Menlo")))))
