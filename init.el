@@ -56,6 +56,9 @@
 (column-number-mode 1)
 
 (display-time-mode)
+
+(electric-pair-mode 1)
+
 ;;(global-linum-mode -1)
 
 					; Packages
@@ -67,13 +70,16 @@
 (package-initialize)
 (unless package-activated-list (package-refresh-contents))
 (let ((needed-packages '(ace-jump-mode
-                         ;autopair
+                         adoc-mode
+                         ag
                          elpy
                          go-mode
                          helm
+                         jq-mode
                          julia-mode
                          julia-repl
 			 magit
+                         monotropic-theme
 			 paredit
 			 slime
                          markdown-mode
@@ -86,6 +92,9 @@
 	  needed-packages)))
 
 (require 'use-package)
+
+                                        ; Theme
+(load-theme 'monotropic t)
 
                                         ; Helm
 (require 'helm)
@@ -381,4 +390,3 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
 
 (provide 'init)
 ;;; init.el ends here
-
