@@ -94,7 +94,8 @@
 (require 'use-package)
 
                                         ; Theme
-(load-theme 'monotropic t)
+(if (display-graphic-p)
+    (load-theme 'monotropic t))
 
                                         ; Helm
 (require 'helm)
