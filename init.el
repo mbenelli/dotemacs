@@ -17,7 +17,7 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Noto Sans Mono-13")
+(let* ((monospaced "Noto Mono-12")
        (sans-serif "Noto Sans-13")
        (serif "Noto Serif")
        (font monospaced))
