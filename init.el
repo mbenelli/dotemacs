@@ -79,6 +79,7 @@
                          julia-mode
                          julia-repl
 			 magit
+                         monkeytype
                          monotropic-theme
 			 paredit
 			 slime
