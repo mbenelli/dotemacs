@@ -17,7 +17,7 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Noto Mono-12")
+(let* ((monospaced "Noto Mono-11")
        (sans-serif "Noto Sans-13")
        (serif "Noto Serif")
        (font monospaced))
@@ -83,6 +83,7 @@
                          monotropic-theme
 			 paredit
 			 slime
+                         solarized-theme
                          markdown-mode
                          use-package
                          )))
@@ -95,8 +96,9 @@
 (require 'use-package)
 
                                         ; Theme
-(if (display-graphic-p)
-    (load-theme 'monotropic t))
+(when (display-graphic-p)
+  (setq x-underline-at-descent-line t)
+  (load-theme 'solarized-light t))
 
                                         ; Helm
 (require 'helm)
