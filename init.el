@@ -82,6 +82,7 @@
                          monkeytype
                          monotropic-theme
 			 paredit
+                         restclient
 			 slime
                          solarized-theme
                          markdown-mode
@@ -330,6 +331,16 @@
 
                                         ; Javascript
 (setq js-indent-level 4)
+
+                                        ; Json
+
+(with-eval-after-load "json-mode"
+  (define-key json-mode-map (kbd "C-c C-j") #'jq-interactively))
+
+(add-hook 'js-json-mode-hook
+          (lambda ()
+            (define-key js-json-mode-map (kbd "C-c C-j") #'jq-interactively)))
+
 
                                         ; Mode line cleaner
 (defvar mode-line-cleaner-alist
