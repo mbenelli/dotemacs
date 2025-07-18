@@ -82,7 +82,6 @@
                          monkeytype
                          monotropic-theme
 			 paredit
-                         restclient
 			 slime
                          solarized-theme
                          markdown-mode
