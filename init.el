@@ -59,7 +59,6 @@
 
 (electric-pair-mode 1)
 
-;;(global-linum-mode -1)
 
 					; Packages
 (require 'package)
@@ -74,6 +73,7 @@
                          ag
                          elpy
                          go-mode
+                         haskell-mode
                          helm
                          jq-mode
                          julia-mode
@@ -98,7 +98,7 @@
                                         ; Theme
 (when (display-graphic-p)
   (setq x-underline-at-descent-line t)
-  (load-theme 'solarized-light t))
+  (load-theme 'monotropic t))
 
                                         ; Helm
 (require 'helm)
@@ -210,10 +210,10 @@
 
                                         ; Org
 (add-hook 'org-mode-hook
-          '(lambda nil
-             (visual-line-mode)
-             (turn-on-font-lock)
-             (disable-show-trailing-whitespace)))
+          (lambda nil
+            (visual-line-mode)
+            (turn-on-font-lock)
+            (disable-show-trailing-whitespace)))
 
                                         ; Markdown
 (autoload 'markdown-mode "markdown-mode")
@@ -222,16 +222,16 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (add-hook 'markdown-mode-hook
-          '(lambda nil
-             (visual-line-mode)))
+          (lambda nil
+            (visual-line-mode)))
 
                                         ; Lilypond
 (autoload 'LilyPond-mode "lilypond-mode")
 (add-to-list 'auto-mode-alist '("\\.ly$" . LilyPond-mode))
 (add-hook 'LilyPond-mode-hook
-          '(lambda nil
-             (define-key LilyPond-mode-map "\C-c\C-p"
-               'LilyPond-command-viewpdf)))
+          (lambda nil
+            (define-key LilyPond-mode-map "\C-c\C-p"
+                        'LilyPond-command-viewpdf)))
 
                                         ; Eshell
 (require 'eshell)
@@ -241,9 +241,9 @@
 (setq eshell-smart-space-goes-to-end t)
 
 (add-hook 'eshell-mode-hook
-          '(lambda nil
-             (setenv "PATH"
-                     (concat (getenv "PATH") ":" (getenv "HOME") "/bin"))))
+          (lambda nil
+            (setenv "PATH"
+                    (concat (getenv "PATH") ":" (getenv "HOME") "/bin"))))
 
 (defun eshell/clear ()
   "04Dec2001 - sailor, to clear the eshell buffer."
@@ -287,12 +287,24 @@
                                         ; Slime
 (setq inferior-lisp-program "sbcl")
 
-                                        ; Gambit Scheme
-(autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
-(autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
-(add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode))
-(add-hook 'scheme-mode-hook (function gambit-mode))
-(setq scheme-program-name "gsi -:d-")
+                                        ; Haskell
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+(custom-set-variables
+ '(haskell-process-type 'stack-ghci)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t))
+
+(define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+(define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+(define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+(define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
 
 
                                         ; C++
@@ -306,6 +318,7 @@
 (add-hook 'before-save-hook 'gofmt-before-save)
 
                                         ; Julia
+(require 'julia-mode)
 (add-hook 'julia-mode-hook 'julia-repl-mode)
 
                                         ; misc
@@ -321,12 +334,6 @@
 (add-hook 'lisp-interaction-mode-hook            #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook                      #'enable-paredit-mode)
 (add-hook 'slime-mode-hook                       #'enable-paredit-mode)
-
-                                        ; QML
-
-;;(autoload 'qml-mode "qml-mode" "Editing Qt Declarative." t)
-;;(add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
-
 
                                         ; Javascript
 (setq js-indent-level 4)
@@ -395,12 +402,22 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
  ;; If there is more than one, they won't work right.
  '(battery-mode-line-format "[%b%p%%]")
  '(compilation-scroll-output 'first-error)
+ '(custom-safe-themes
+   '("a1b21c4d7f9f82c600967cf349f0481c3db89842e28abd91b55f4899e5b3a3ce" "abccbf10aee9804f2e5fa8fc3480b271d1653b871dcda0259804ece106c11686" default))
  '(display-time-24hr-format t)
  '(eww-download-directory "~/downloads/")
  '(markdown-xhtml-header-content
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
+ '(package-selected-packages
+   '(haskell-mode solarized-theme slime paredit monotropic-theme monkeytype markdown-mode magit julia-repl julia-mode jq-mode helm go-mode flucui-themes eziam-themes elpy brutalist-theme almost-mono-themes ag adoc-mode ace-jump-mode))
  '(send-mail-function 'sendmail-send-it))
 
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
