@@ -17,8 +17,12 @@
                                         ; Widgets and themes
 (setq inhibit-splash-screen t)
 
-(let* ((monospaced "Noto Sans Mono-13")
-       (sans-serif "Noto Sans-13")
+(let* ((monospaced (if (string-equal system-type "windows-nt")
+                       "Noto Sans Mono-11"
+                     "Noto Sans Mono-13"))
+       (sans-serif (if (string-equal system-type "windows-nt")
+                       "Noto Sans-11"
+                     "Noto Sans-13"))
        (serif "Noto Serif")
        (font monospaced))
   (setq default-frame-alist
@@ -138,10 +142,15 @@
       smtpmail-stream-type 'ssl
       smtpmail-smtp-user "mbenelli@fastmail.com")
 
+
                                         ; Haskell
 
-(let ((ghcup-path (expand-file-name "~/.ghcup/bin"))
-      (cabal-path (expand-file-name "~/.cabal/bin")))
+(let ((ghcup-path (if (string-equal system-type "windows-nt")
+                      "/ghcup/bin"
+                    (expand-file-name "~/.ghcup/bin")))
+      (cabal-path (if (string-equal system-type "windows-nt")
+                      "/cabal/bin"
+                    (expand-file-name "~/.cabal/bin"))))
   (setenv "PATH" (concat ghcup-path ":"
                          cabal-path ":"
                          (getenv "PATH")))
@@ -189,8 +198,7 @@
           '(lambda nil
              (setenv "PATH"
                      (concat (getenv "PATH") ":"
-                             (expand-file-name "~/.local/bin") ":"
-                             (expand-file-name "~/.ghcup/bin"))
+                             (expand-file-name "~/.local/bin") ":")
                      )))
 
 (defun eshell/clear ()
@@ -275,7 +283,7 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
 
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
-(require 'local)
+;;(require 'local)
 
 ;;
 (custom-set-variables
