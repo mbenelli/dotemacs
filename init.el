@@ -76,10 +76,11 @@
                          go-mode
                          haskell-mode
                          helm
-			 magit
-			 paredit
+                         magit
+                         paredit
                          restclient
-			 slime
+                         slime
+                         typit
                          use-package
                          )))
   (when
@@ -294,17 +295,13 @@ want to use in the modeline *in lieu of* the original.")(defun clean-mode-line (
  '(battery-mode-line-format "[%b%p%%]")
  '(compilation-scroll-output 'first-error)
  '(custom-safe-themes
-   '("efcecf09905ff85a7c80025551c657299a4d18c5fcfedd3b2f2b6287e4edd659"
-     "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7"
-     "57a29645c35ae5ce1660d5987d3da5869b048477a7801ce7ab57bfb25ce12d3e"
-     "2b0fcc7cc9be4c09ec5c75405260a85e41691abb1ee28d29fcd5521e4fca575b"
-     "7fea145741b3ca719ae45e6533ad1f49b2a43bf199d9afaee5b6135fd9e6f9b8"
-     default))
+   '("efcecf09905ff85a7c80025551c657299a4d18c5fcfedd3b2f2b6287e4edd659" "285d1bf306091644fb49993341e0ad8bafe57130d9981b680c1dbd974475c5c7" "57a29645c35ae5ce1660d5987d3da5869b048477a7801ce7ab57bfb25ce12d3e" "2b0fcc7cc9be4c09ec5c75405260a85e41691abb1ee28d29fcd5521e4fca575b" "7fea145741b3ca719ae45e6533ad1f49b2a43bf199d9afaee5b6135fd9e6f9b8" default))
  '(display-time-24hr-format t)
  '(eww-download-directory "~/downloads/")
  '(markdown-xhtml-header-content
    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(typit slime restclient paredit magit helm haskell-mode go-mode ace-jump-mode))
  '(send-mail-function 'sendmail-send-it))
 
 
