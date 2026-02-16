@@ -61,8 +61,6 @@
 
 (display-time-mode)
 
-(load-theme 'modus-operandi t)
-
 
 					; Packages
 (require 'package)
